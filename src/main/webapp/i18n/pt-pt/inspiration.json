@@ -1,0 +1,26 @@
+{
+  "beveApp": {
+    "inspiration": {
+      "home": {
+        "title": "Inspirations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Criar novo(a) Inspiration",
+        "createOrEditLabel": "Criar ou editar Inspiration",
+        "notFound": "Nenhum Inspirations encontrado"
+      },
+      "created": "Um novo Inspiration foi criado com o identificador {{ param }}",
+      "updated": "Inspiration com identificador {{ param }} foi actualizado",
+      "deleted": "Inspiration com identificador {{ param }} foi eliminado",
+      "delete": {
+        "question": "Tem a certeza que pretende eliminar o(a) Inspiration {{ id }}?"
+      },
+      "detail": {
+        "title": "Inspiration"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "articleInspiration": "Article Inspiration",
+      "createurAfricain": "Createur Africain"
+    }
+  }
+}
