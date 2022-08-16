@@ -1,0 +1,27 @@
+{
+  "beveApp": {
+    "reseauxSociaux": {
+      "home": {
+        "title": "Reseaux Sociauxes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Criar novo(a) Reseaux Sociaux",
+        "createOrEditLabel": "Criar ou editar Reseaux Sociaux",
+        "notFound": "Nenhum Reseaux Sociauxes encontrado"
+      },
+      "created": "Um novo Reseaux Sociaux foi criado com o identificador {{ param }}",
+      "updated": "Reseaux Sociaux com identificador {{ param }} foi actualizado",
+      "deleted": "Reseaux Sociaux com identificador {{ param }} foi eliminado",
+      "delete": {
+        "question": "Tem a certeza que pretende eliminar o(a) Reseaux Sociaux {{ id }}?"
+      },
+      "detail": {
+        "title": "Reseaux Sociaux"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "nomChaine": "Nom Chaine",
+      "lienChaine": "Lien Chaine",
+      "createurAfricain": "Createur Africain"
+    }
+  }
+}

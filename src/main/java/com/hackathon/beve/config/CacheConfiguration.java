@@ -48,6 +48,22 @@ public class CacheConfiguration {
             createCache(cm, com.hackathon.beve.domain.User.class.getName());
             createCache(cm, com.hackathon.beve.domain.Authority.class.getName());
             createCache(cm, com.hackathon.beve.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.hackathon.beve.domain.Donnateur.class.getName());
+            createCache(cm, com.hackathon.beve.domain.Don.class.getName());
+            createCache(cm, com.hackathon.beve.domain.Inspiration.class.getName());
+            createCache(cm, com.hackathon.beve.domain.Inspiration.class.getName() + ".createurAfricains");
+            createCache(cm, com.hackathon.beve.domain.CreateurAfricain.class.getName());
+            createCache(cm, com.hackathon.beve.domain.CreateurAfricain.class.getName() + ".inspirations");
+            createCache(cm, com.hackathon.beve.domain.CreateurAfricain.class.getName() + ".categorieCreateurs");
+            createCache(cm, com.hackathon.beve.domain.CreateurAfricain.class.getName() + ".reseauxSociauxes");
+            createCache(cm, com.hackathon.beve.domain.CreateurAfricain.class.getName() + ".souscriptions");
+            createCache(cm, com.hackathon.beve.domain.CategorieCreateur.class.getName());
+            createCache(cm, com.hackathon.beve.domain.CategorieCreateur.class.getName() + ".createurAfricains");
+            createCache(cm, com.hackathon.beve.domain.Transaction.class.getName());
+            createCache(cm, com.hackathon.beve.domain.Souscription.class.getName());
+            createCache(cm, com.hackathon.beve.domain.Souscription.class.getName() + ".createurAfricains");
+            createCache(cm, com.hackathon.beve.domain.ReseauxSociaux.class.getName());
+            createCache(cm, com.hackathon.beve.domain.ReseauxSociaux.class.getName() + ".createurAfricains");
             // jhipster-needle-ehcache-add-entry
         };
     }
