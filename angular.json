@@ -29,14 +29,27 @@
             "polyfills": "src/main/webapp/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "allowedCommonJsDependencies": ["chart.js"],
             "assets": [
               "src/main/webapp/content",
               "src/main/webapp/favicon.ico",
               "src/main/webapp/manifest.webapp",
               "src/main/webapp/robots.txt"
             ],
-            "styles": ["src/main/webapp/content/scss/vendor.scss", "src/main/webapp/content/scss/global.scss"],
-            "scripts": []
+            "styles": [
+              "node_modules/fullcalendar/dist/fullcalendar.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "node_modules/mobius1-selectr/dist/selectr.min.css",
+              "node_modules/@swimlane/ngx-datatable/index.css",
+              "node_modules/@swimlane/ngx-datatable/assets/icons.css",
+              "node_modules/@swimlane/ngx-datatable/themes/bootstrap.css",
+              "src/main/webapp/content/scss/vendor.scss",
+              "src/main/webapp/content/scss/global.scss",
+              "src/main/webapp/content/assets/vendor/nucleo/css/nucleo.css",
+              "src/main/webapp/content/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/main/webapp/content/assets/scss/argon.scss"
+            ],
+            "scripts": ["node_modules/chart.js/dist/Chart.min.js", "node_modules/clipboard/dist/clipboard.min.js"]
           },
           "configurations": {
             "production": {
@@ -104,6 +117,7 @@
       "path": "./target/angular/",
       "environment": "all"
     },
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": false
   }
 }
