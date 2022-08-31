@@ -210,7 +210,7 @@
           </a>
         </li>
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/creer-page" (click)="collapseNavbar()">
+          <a class="nav-link" routerLink="/create-page" (click)="collapseNavbar()">
             <span>Créér votre page</span>
           </a>
         </li>
@@ -246,7 +246,6 @@
         >
           <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu" data-cy="accountMenu">
             <span *ngIf="!account?.imageUrl">
-              <fa-icon icon="user"></fa-icon>
               <span jhiTranslate="global.menu.account.main">Compte</span>
             </span>
             <span *ngIf="account?.imageUrl">

@@ -32,6 +32,10 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
           path: '',
           loadChildren: () => import(`./entities/entity-routing.module`).then(m => m.EntityRoutingModule),
         },
+        {
+          path: 'create-page',
+          loadChildren: () => import(`./feature/creer-page/creer-page.module`).then(m => m.CreerPageModule),
+        },
         navbarRoute,
         ...errorRoute,
       ],
