@@ -1,7 +1,23 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
 .creer-page {
   font-family: Geomanist;
 
   h3 {
     font-size: 14px;
+  }
+  .btn-info {
+    border-radius: 20px;
+    width: 160px;
+    color: black;
+  }
+  .slider {
+    position: relative;
+  }
+  .btn-slider {
+    position: absolute;
+    top: 290px;
+    border-radius: 20px;
   }
 }
