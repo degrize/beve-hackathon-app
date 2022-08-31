@@ -8,7 +8,5 @@ import { Component, OnInit } from '@angular/core';
 export class CreerPageComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('kl');
-  }
+  ngOnInit(): void {}
 }
