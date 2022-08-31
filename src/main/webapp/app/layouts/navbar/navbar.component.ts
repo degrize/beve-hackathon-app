@@ -24,6 +24,7 @@ export class NavbarComponent implements OnInit {
   version = '';
   account: Account | null = null;
   entitiesNavbarItems: any[] = [];
+  lang = 'fr';
 
   constructor(
     private loginService: LoginService,
@@ -39,6 +40,9 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.sessionStorageService.retrieve('locale')) {
+      this.lang = this.sessionStorageService.retrieve('locale');
+    }
     this.entitiesNavbarItems = EntityNavbarItems;
     this.profileService.getProfileInfo().subscribe(profileInfo => {
       this.inProduction = profileInfo.inProduction;
@@ -51,6 +55,7 @@ export class NavbarComponent implements OnInit {
   }
 
   changeLanguage(languageKey: string): void {
+    this.lang = languageKey;
     this.sessionStorageService.store('locale', languageKey);
     this.translateService.use(languageKey);
   }

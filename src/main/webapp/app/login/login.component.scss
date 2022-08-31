@@ -1,0 +1,30 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+/* ==========================================================================
+Navbar
+========================================================================== */
+.login {
+  font-family: Geomanist;
+
+  .card-connexion {
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: $box-shadow;
+  }
+
+  h3 {
+    font-size: 14px;
+  }
+  .input {
+    border-radius: 15px;
+    width: 300px;
+  }
+  .input[placeholder] {
+    color: black;
+    text-align: center;
+  }
+  .btn-create-compte {
+    color: yellow;
+  }
+}

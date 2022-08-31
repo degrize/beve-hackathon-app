@@ -1,4 +1,4 @@
-<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md bg-dark">
+<nav data-cy="navbar" class="navbar navbar-yellow navbar-expand-md bg-yellow">
   <div class="container-fluid">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
       <span class="logo-img"></span>
@@ -22,8 +22,14 @@
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
             <span>
-              <fa-icon icon="home"></fa-icon>
               <span jhiTranslate="global.menu.home">Accueil</span>
+            </span>
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/l" (click)="collapseNavbar()">
+            <span>
+              <span>Premium</span>
             </span>
           </a>
         </li>
@@ -196,11 +202,23 @@
             <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
           </ul>
         </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/a-propos" (click)="collapseNavbar()">
+            <span>
+              <span>A propos</span>
+            </span>
+          </a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <a class="nav-link" routerLink="/creer-page" (click)="collapseNavbar()">
+            <span>Créér votre page</span>
+          </a>
+        </li>
         <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" *ngIf="languages && languages.length > 1">
           <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
             <span>
-              <fa-icon icon="flag"></fa-icon>
-              <span jhiTranslate="global.menu.language">Langue</span>
+              <img [src]="'../../../content/assets/img/icons/flags/' + lang + '.png'" class="img-flags" />
+              <span>{{ lang.toUpperCase() }} </span>
             </span>
           </a>
           <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="languagesnavBarDropdown">
@@ -210,8 +228,12 @@
                 [jhiActiveMenu]="language"
                 href="javascript:void(0);"
                 (click)="changeLanguage(language); collapseNavbar()"
-                >{{ language | findLanguageFromKey }}</a
               >
+                <span>
+                  <img [src]="'../../../content/assets/img/icons/flags/' + language + '.png'" class="img-flags" />
+                  <span>{{ language | findLanguageFromKey }} </span>
+                </span>
+              </a>
             </li>
           </ul>
         </li>
@@ -263,7 +285,7 @@
               </a>
             </li>
             <li *ngSwitchCase="false">
-              <a class="dropdown-item" (click)="login()" id="login" data-cy="login">
+              <a class="dropdown-item" routerLink="/login" routerLinkActive="active" (click)="collapseNavbar()" id="login" data-cy="login">
                 <fa-icon icon="sign-in-alt" [fixedWidth]="true"></fa-icon>
                 <span jhiTranslate="global.menu.account.login">S'authentifier</span>
               </a>
