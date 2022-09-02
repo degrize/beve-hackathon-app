@@ -36,6 +36,10 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
           path: 'create-page',
           loadChildren: () => import(`./feature/creer-page/creer-page.module`).then(m => m.CreerPageModule),
         },
+        {
+          path: 'a-propos',
+          loadChildren: () => import(`./a-propos/a-propos.module`).then(m => m.AProposModule),
+        },
         navbarRoute,
         ...errorRoute,
       ],
