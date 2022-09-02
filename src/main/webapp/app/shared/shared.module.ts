@@ -13,10 +13,17 @@ import { SortByDirective } from './sort/sort-by.directive';
 import { SortDirective } from './sort/sort.directive';
 import { ItemCountComponent } from './pagination/item-count.component';
 import { FilterComponent } from './filter/filter.component';
+import { SlideGalleryComponent } from './slide-gallery/slide-gallery.component';
+import { SwiperModule } from 'swiper/angular';
+import { NextDirective } from './slide-gallery/next.directive';
+import { PrevDirective } from './slide-gallery/prev.directive';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
-  imports: [SharedLibsModule],
+  imports: [SharedLibsModule, SwiperModule, CarouselModule],
   declarations: [
+    NextDirective,
+    PrevDirective,
     FindLanguageFromKeyPipe,
     TranslateDirective,
     AlertComponent,
@@ -29,12 +36,14 @@ import { FilterComponent } from './filter/filter.component';
     SortDirective,
     ItemCountComponent,
     FilterComponent,
+    SlideGalleryComponent,
   ],
   exports: [
     SharedLibsModule,
     FindLanguageFromKeyPipe,
     TranslateDirective,
     AlertComponent,
+    SlideGalleryComponent,
     AlertErrorComponent,
     HasAnyAuthorityDirective,
     DurationPipe,

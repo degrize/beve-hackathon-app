@@ -6,6 +6,8 @@ import { takeUntil } from 'rxjs/operators';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 
+declare var mixitup: any;
+
 @Component({
   selector: 'jhi-home',
   templateUrl: './home.component.html',
@@ -23,6 +25,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       .getAuthenticationState()
       .pipe(takeUntil(this.destroy$))
       .subscribe(account => (this.account = account));
+
+    const containerEl = document.querySelector('.container');
+    console.log('containerEl');
+
+    const mixer = mixitup(containerEl);
   }
 
   login(): void {
