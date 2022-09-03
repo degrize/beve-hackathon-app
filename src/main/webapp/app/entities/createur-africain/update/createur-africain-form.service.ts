@@ -76,7 +76,7 @@ export class CreateurAfricainFormService {
         validators: [Validators.required],
       }),
       email: new FormControl(createurAfricainRawValue.email, {
-        validators: [Validators.required],
+        validators: [],
       }),
       dateDeNaissance: new FormControl(createurAfricainRawValue.dateDeNaissance),
       pays: new FormControl(createurAfricainRawValue.pays, {

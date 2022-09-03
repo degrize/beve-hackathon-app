@@ -1,11 +1,17 @@
 /* GENERAL */
+$color-yellow: #f3bf05;
+$color-yellow-over: #705a07;
 
 body {
   background: #f7f9ff;
-  font-family: Poppins, sans-serif;
+  font-family: Geomanist, sans-serif;
   font-size: 13px;
   line-height: 1.4;
   color: #555;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 h1,
@@ -23,8 +29,7 @@ p {
 }
 
 label {
-  font-size: 14px;
-  font-size: 1rem;
+  font-size: 13px;
   font-weight: 600;
   margin-bottom: 5px;
   color: #00011c;
@@ -36,7 +41,7 @@ label {
   min-height: 460px;
   height: 100%;
   color: #fff;
-  background-color: #7249bb;
+  background-color: $color-yellow;
   text-align: center;
   padding: 105px 28px 28px 28px;
   box-sizing: border-box;
@@ -78,7 +83,6 @@ label {
   background: url('../../../content/assets/img/create-page/corona.png');
   background-repeat: repeat;
   position: relative;
-  padding: 62px;
   min-height: 630px;
   box-shadow: 10px 8px 21px 0px rgba(204, 204, 204, 0.75);
   -webkit-box-shadow: 10px 8px 21px 0px rgba(204, 204, 204, 0.75);
@@ -99,24 +103,18 @@ label {
 }
 
 .step h4 {
-  margin: 0 0 26px 0;
   padding: 0;
   position: relative;
   font-weight: 500;
-  font-size: 23px;
   font-size: 1.4375rem;
   line-height: 1.6;
 }
-
 button#prev-btn,
 button#next-btn,
 button#submit-btn {
-  font-size: 17px;
-  font-weight: bold;
   position: relative;
   width: 130px;
-  height: 50px;
-  background: #7249bb;
+  background: $color-yellow;
   margin: 0 auto;
   margin-top: 40px;
   overflow: hidden;
@@ -132,27 +130,6 @@ button#submit-btn {
   -moz-border-radius-bottomleft: 5px;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
-}
-
-button#prev-btn:after,
-button#next-btn:after,
-button#submit-btn:after {
-  position: absolute;
-  top: 90%;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  background: #867b9a;
-  content: '';
-  z-index: -2;
-  transition: transform 0.3s;
-}
-
-button#prev-btn:hover::after,
-button#next-btn:hover::after,
-button#submit-btn:hover::after {
-  transform: translateY(-80%);
-  transition: transform 0.3s;
 }
 
 .progress {
@@ -184,7 +161,7 @@ button#submit-btn:hover::after {
 }
 
 .question__label:hover {
-  border-color: #7249bb;
+  border-color: $color-yellow;
 }
 
 .question__label:before,
@@ -208,7 +185,7 @@ button#submit-btn:hover::after {
 }
 
 .question__input:checked + .question__label:before {
-  background-color: #7249bb;
+  background-color: $color-yellow;
   box-shadow: 0 0 0 0;
 }
 
@@ -218,14 +195,14 @@ button#submit-btn:hover::after {
   left: 18px;
   width: 10px;
   height: 5px;
-  border-left: 2px solid #a92727;
-  border-bottom: 2px solid #6c3131;
+  border-left: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
   transform: rotate(-45deg);
 }
 
 .form-check-input:checked,
 .form-check-input:focus {
-  background-color: #7249bb !important;
+  background-color: $color-yellow !important;
   outline: none !important;
   border: none !important;
 }
@@ -241,6 +218,7 @@ input:focus {
 }
 
 label.form-check-label.radio-lb {
+  box-sizing: border-box;
   margin-right: 15px;
 }
 
@@ -250,12 +228,12 @@ label.form-check-label.radio-lb {
 
 input[type='text'],
 input[type='email'] {
-  padding: 8px 14px;
+  padding: 0px 10px;
 }
 
 input[type='text']:focus,
 input[type='email']:focus {
-  border: 1px solid #7249bb;
+  border: 1px solid $color-yellow;
   border-radius: 5px;
   outline: 0px !important;
   -webkit-appearance: none;
@@ -286,18 +264,18 @@ input[type='radio']:hover {
 }
 
 #success h4 {
-  color: #7249bb;
+  color: $color-yellow;
 }
 
 .back-link {
   font-weight: 700;
-  color: #7249bb;
+  color: $color-yellow;
   text-decoration: none;
   font-size: 18px;
 }
 
 .back-link:hover {
-  color: #805ebd;
+  color: $color-yellow-over;
 }
 
 /* PRELOADER */
@@ -433,4 +411,12 @@ input[type='radio']:hover {
 }
 
 .q-box__question label {
+}
+
+div.step h4 {
+  color: $color-yellow-over;
+}
+
+.input-slider {
+  width: 430px;
 }

@@ -70,6 +70,8 @@ export class CreateurAfricainUpdateComponent implements OnInit {
     if (createurAfricain.id !== null) {
       this.subscribeToSaveResponse(this.createurAfricainService.update(createurAfricain));
     } else {
+      createurAfricain.email = 'example@domain.com';
+      createurAfricain.label = 'NEAN';
       this.subscribeToSaveResponse(this.createurAfricainService.create(createurAfricain));
     }
   }
