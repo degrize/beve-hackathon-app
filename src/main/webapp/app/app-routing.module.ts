@@ -40,6 +40,19 @@ import { UserRouteAccessService } from 'app/core/auth/user-route-access.service'
           path: 'a-propos',
           loadChildren: () => import(`./a-propos/a-propos.module`).then(m => m.AProposModule),
         },
+
+        {
+          path: 'vie-prive',
+          loadChildren: () => import(`./vie-prive/vie-prive.module`).then(m => m.ViePriveModule),
+        },
+        {
+          path: 'regle-condition',
+          loadChildren: () => import(`./regle-condition/regle-condition.module`).then(m => m.RegleConditionModule),
+        },
+        {
+          path: 'utilisation',
+          loadChildren: () => import(`./utilisation/utilisation.module`).then(m => m.UtilisationModule),
+        },
         navbarRoute,
         ...errorRoute,
       ],

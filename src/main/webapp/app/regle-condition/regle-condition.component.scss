@@ -1,25 +1,28 @@
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
-.a-propos {
+.regle-condition {
   font-family: Geomanist;
 
-  h2 {
+  .ap {
     font-size: 35px;
     text-align: center;
   }
-  .ap {
-    text-align: center;
-    font-size: 50px;
-  }
 
-  .card-img-top {
-    width: 200px;
-    height: 200px;
-  }
-  .text {
+  .card-text {
     text-align: justify;
     color: black;
     font-size: 17px;
+    padding: 5px;
+  }
+
+  .tab-pane {
+    margin-top: 50px;
+  }
+
+  .card-img-top {
+    height: 100px;
+    width: 100px;
+    margin: auto;
   }
 }

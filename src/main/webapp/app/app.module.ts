@@ -26,7 +26,6 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
-import { AProposComponent } from './a-propos/a-propos.component';
 
 @NgModule({
   imports: [
@@ -48,15 +47,7 @@ import { AProposComponent } from './a-propos/a-propos.component';
     FindLanguageFromKeyPipe,
     httpInterceptorProviders,
   ],
-  declarations: [
-    MainComponent,
-    NavbarComponent,
-    ErrorComponent,
-    PageRibbonComponent,
-    ActiveMenuDirective,
-    FooterComponent,
-    AProposComponent,
-  ],
+  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent],
 })
 export class AppModule {
