@@ -1,0 +1,31 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+.utilisation {
+  .ap {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 50px;
+    text-decoration: underline wavy red;
+  }
+  .card-title {
+    font-size: 30px;
+    color: black;
+  }
+
+  .card {
+    max-width: 700px;
+    margin: auto;
+    margin-bottom: 50px;
+  }
+
+  .text {
+    padding: 10px;
+    text-align: justify;
+    color: black;
+  }
+
+  .slider {
+    margin: auto;
+  }
+}
