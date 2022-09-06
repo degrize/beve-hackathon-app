@@ -10,10 +10,7 @@ export const FenStartLayoutRoutes: Routes = [
     path: 'login',
     loadChildren: () => import('../../login/login.module').then(m => m.LoginModule),
   },
-  {
-    path: '',
-    loadChildren: () => import(`../../entities/entity-routing.module`).then(m => m.EntityRoutingModule),
-  },
+
   {
     path: 'create-page',
     loadChildren: () => import(`../../feature/creer-page/creer-page.module`).then(m => m.CreerPageModule),
@@ -33,6 +30,14 @@ export const FenStartLayoutRoutes: Routes = [
   {
     path: 'utilisation',
     loadChildren: () => import(`../../utilisation/utilisation.module`).then(m => m.UtilisationModule),
+  },
+  {
+    path: 'aide',
+    loadChildren: () => import(`../../aide/aide.module`).then(m => m.AideModule),
+  },
+  {
+    path: 'premium',
+    loadChildren: () => import(`../../premium/premium.module`).then(m => m.PremiumModule),
   },
   navbarRoute,
 ];
