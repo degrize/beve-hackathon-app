@@ -1,0 +1,25 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+.aide {
+  font-family: Geomanist;
+
+  .ap {
+    font-size: 35px;
+    text-align: center;
+    text-decoration: underline wavy red;
+    margin-bottom: 50px;
+    background: black;
+  }
+
+  .btn {
+    background: black;
+    color: yellow;
+  }
+
+  .vb {
+    margin: auto;
+
+    width-max: 200px;
+  }
+}

@@ -1,0 +1,33 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+.premium {
+  font-family: Geomanist;
+
+  .ap {
+    background: black;
+    font-size: 35px;
+    text-align: center;
+    text-decoration: underline wavy red;
+  }
+
+  .card-text {
+    font-size: 20px;
+  }
+  .card-img-top {
+    max-height: 500px;
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .card-img {
+    max-height: 100px;
+    max-width: 100px;
+    margin: auto;
+  }
+
+  .card {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
