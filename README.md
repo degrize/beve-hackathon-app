@@ -223,6 +223,14 @@ Then run:
 
 ```
 docker-compose -f src/main/docker/app.yml up -d
+
+```
+
+# Mes bibliotheques
+
+```
+npm i --save-dev @types/chart.js
+
 ```
 
 When running Docker Desktop on MacOS Big Sur or later, consider enabling experimental `Use the new Virtualization framework` for better processing performance ([disk access performance is worse](https://github.com/docker/roadmap/issues/7)).

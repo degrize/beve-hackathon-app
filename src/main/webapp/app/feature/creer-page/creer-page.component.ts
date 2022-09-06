@@ -18,6 +18,7 @@ import { Observable } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
 import { finalize, map } from 'rxjs/operators';
 import noUiSlider from 'nouislider';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'jhi-creer-page',
@@ -78,6 +79,25 @@ export class CreerPageComponent implements OnInit, AfterViewInit {
         },
       });
     }
+  }
+
+  successSwal() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: toast => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Votre page a bien été enregistrée',
+    });
   }
 
   startMultiplePage(): void {
@@ -185,6 +205,7 @@ export class CreerPageComponent implements OnInit, AfterViewInit {
   }
 
   protected onSaveSuccess(): void {
+    this.successSwal();
     this.previousState();
   }
 

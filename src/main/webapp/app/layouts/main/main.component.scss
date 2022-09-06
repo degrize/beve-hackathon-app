@@ -1,0 +1,127 @@
+@import '/src/main/webapp/content/scss/bootstrap-variables';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+.projet_main {
+  display: flex;
+  justify-content: center;
+}
+
+.page_container {
+  width: 100%;
+  max-width: 997px;
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+// La bar de menu
+.dashboard {
+  background-color: transparent;
+  width: calc(100% - 250px);
+  padding: 10px 14px;
+  transition: $tran-05;
+}
+nav.close ~ .dashboard {
+  left: 73px;
+  width: calc(100% - 73px);
+}
+.dashboard .top {
+  position: fixed;
+  top: 0;
+  left: 250px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  //background-color: $panel-color;
+  background: $bg-nav-top;
+  transition: $tran-05;
+  z-index: 10;
+  height: 60px;
+  color: $white;
+  font-size: 40px;
+}
+nav.close ~ .dashboard .top {
+  left: 73px;
+  width: calc(100% - 73px);
+}
+.dashboard .top .sidebar-toggle {
+  font-size: 26px;
+  color: $text-color;
+  cursor: pointer;
+}
+.dashboard .top .search-box {
+  position: relative;
+  height: 45px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 30px;
+}
+.top .search-box input {
+  position: absolute;
+  border: 1px solid $border-color;
+  background-color: $panel-color;
+  padding: 0 25px 0 50px;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  color: $text-color;
+  font-size: 15px;
+  font-weight: 400;
+  outline: none;
+}
+.top .search-box i {
+  position: absolute;
+  left: 15px;
+  font-size: 22px;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $black-light-color;
+}
+.top img {
+  width: 40px;
+  border-radius: 50%;
+}
+
+@media (max-width: 400px) {
+  .nav-left {
+    width: 130px !important;
+  }
+
+  .responsive-font-example {
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+    left: 0px;
+  }
+
+  .dashboard .top {
+    background: $first-color;
+    color: white;
+    font-weight: 900;
+    width: 500px !important;
+    left: 0;
+  }
+  .page_container {
+  }
+}
+
+/* If the screen size is 1200px wide or more, set the font-size to 80px */
+@media (min-width: 1200px) {
+  .responsive-font-example {
+    font-size: 30px;
+    text-align: center;
+    align-self: center;
+  }
+}
+/* If the screen size is smaller than 1200px, set the font-size to 80px */
+@media (max-width: 1199.98px) {
+  .responsive-font-example {
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+    left: -100px;
+  }
+}

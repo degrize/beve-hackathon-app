@@ -13,7 +13,7 @@ $success: #28a745;
 $info: #17a2b8;
 $warning: #ffc107;
 $danger: #dc3545;
-
+$bg-nav-top: rgba(61, 165, 189, 0.97);
 // Options:
 // Quickly modify global styling by enabling or disabling optional features.
 $enable-rounded: true;
@@ -43,3 +43,60 @@ $font-size-base: 1rem;
 
 $dropdown-link-hover-color: white;
 $dropdown-link-hover-bg: #343a40;
+
+/*===== VARIABLES CSS =====*/
+
+$header-height: 3rem;
+$font-medium: 500;
+
+/*===== Colores =====*/
+
+$first-color: rgba(61, 165, 189, 0.97);
+$white-color: #fafaff;
+$dark-color: #2a3b47;
+$text-color: #697477;
+
+/*===== Fuente y tipografia =====*/
+
+$body-font: 'Montserrat', sans-serif;
+
+$big-font-size: 6.25rem;
+$h2-font-size: 1.25rem;
+$normal-font-size: 0.938rem;
+$small-font-size: 0.813rem;
+
+@media screen and (min-width: 768px) {
+  $big-font-size: 10.5rem;
+  $h2-font-size: 2rem;
+  $normal-font-size: 1rem;
+  $small-font-size: 0.875rem;
+}
+
+/*===== Margenes =====*/
+
+$mb-1: 0.5rem;
+$mb-2: 1rem;
+$mb-3: 1.5rem;
+$mb-4: 2rem;
+
+/*===== z index =====*/
+
+$z-fixed: 100;
+
+//PAGE DASHBOARD
+$text-color: #000;
+$primary-color: rgba(61, 165, 189, 0.97);
+$panel-color: #fff;
+$nav_width: 250px;
+$black-light-color: #707070;
+$border-color: #e6e5e5;
+$toggle-color: #ddd;
+$box1-color: #4da3ff;
+$box2-color: #ffe6ac;
+$box3-color: #e7d1fc;
+$title-icon-color: #fff;
+
+/* ====== Transition ====== */
+$tran-05: all 0.5s ease;
+$tran-03: all 0.3s ease;
+$tran-03: all 0.2s ease;
