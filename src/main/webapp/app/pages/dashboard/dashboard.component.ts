@@ -22,7 +22,47 @@ export class DashboardComponent implements OnInit {
     ];
     this.data = this.datasets[0];
 
+    this.chartJsFunction();
+  }
+
+  chartJsFunction(): void {
+    var chartSales = <HTMLCanvasElement>document.getElementById('chart-sales-dark');
+
+    // Init chart
+    var salesChart = new Chart(chartSales, {
+      type: 'bar',
+      data: {
+        labels: ['Très bien', 'Bien', 'Assez bien', 'Passable'],
+        datasets: [
+          {
+            label: 'Mention Soutenance',
+            data: [23, 23, 16, 32],
+            backgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+      },
+    });
+
     var chartOrders = <HTMLCanvasElement>document.getElementById('chart-orders');
+    var salesChart = new Chart(chartOrders, {
+      type: 'line',
+      data: {
+        labels: ['Très bien', 'Bien', 'Assez bien', 'Passable'],
+        datasets: [
+          {
+            label: 'Mention Soutenance',
+            data: [23, 23, 16, 32],
+            backgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+      },
+    });
   }
 
   public updateOptions() {
@@ -31,4 +71,6 @@ export class DashboardComponent implements OnInit {
       this.salesChart?.update();
     }
   }
+
+  startChartJs(): void {}
 }

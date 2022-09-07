@@ -21,8 +21,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '/dashboard', title: 'Dashboard', icon: 'ni-tv-2 text-primary', class: '' },
   { path: '/ma-papg', title: 'Ma Page', icon: 'ni-planet text-blue', class: '' },
   { path: '/don-page', title: 'Mes Dons', icon: 'ni-pin-3 text-orange', class: '' },
-  { path: '/profile', title: 'profile', icon: 'ni-single-02 text-yellow', class: '' },
-  { path: '/logout', title: 'Deconnexion', icon: 'ni-key-25 text-info', class: '' },
+  { path: '/user-profile', title: 'profile créateur', icon: 'ni-single-02 text-yellow', class: '' },
 ];
 
 @Component({
