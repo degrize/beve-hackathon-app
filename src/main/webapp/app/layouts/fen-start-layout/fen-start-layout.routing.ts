@@ -39,5 +39,9 @@ export const FenStartLayoutRoutes: Routes = [
     path: 'premium',
     loadChildren: () => import(`../../premium/premium.module`).then(m => m.PremiumModule),
   },
+  {
+    path: 'createur',
+    loadChildren: () => import(`../../createur/dons.module`).then(m => m.DonsModule),
+  },
   navbarRoute,
 ];

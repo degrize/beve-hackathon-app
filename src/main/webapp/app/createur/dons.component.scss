@@ -1,0 +1,53 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+.createur {
+  font-family: Geomanist;
+
+  .mtn {
+    max-height: 50px;
+    margin: auto;
+    max-width: 50px;
+    margin-bottom: 30px;
+  }
+
+  .tt {
+    font-weight: bolder;
+    text-color: #00000000;
+  }
+
+  .card {
+    margin-top: 500px;
+    margin: auto;
+    padding: 20px;
+    background-color: #ffcb02;
+  }
+
+  .photo {
+    margin: auto;
+  }
+
+  .col-sm-6 {
+    color: black;
+  }
+  .texte {
+    color: black;
+  }
+  .titre {
+    font-weight: bolder;
+
+    color: black;
+    margin: auto;
+    margin-bottom: 30px;
+  }
+
+  .mes {
+    margin: auto;
+  }
+
+  .rounded-circle {
+    max-height: 100px;
+    margin: auto;
+    max-width: 100px;
+  }
+}
