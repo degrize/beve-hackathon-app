@@ -1,4 +1,4 @@
-<nav data-cy="navbar" class="navbar navbar-yellow navbar-expand-md bg-yellow">
+<nav [ngSwitch]="account !== null" data-cy="navbar" class="navbar navbar-yellow navbar-expand-md bg-yellow">
   <div class="container-fluid">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
       <span class="logo-img"></span>

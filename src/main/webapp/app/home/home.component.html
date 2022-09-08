@@ -1,4 +1,4 @@
-<div class="creer-page flex-column d-flex justify-content-center">
+<div [ngSwitch]="account !== null" class="creer-page flex-column d-flex justify-content-center">
   <div class="d-flex flex-column justify-content-center align-items-center">
     <div>
       <h2 class="ja d-inline-block text-yellow">Recevez les dons de vos fans</h2>
@@ -35,7 +35,7 @@
         </slide>
       </carousel>
 
-      <button type="button" class="btn btn-info btn-slider bg-yellow text-dark">Commencer</button>
+      <button *ngSwitchCase="true" type="button" routerLink="/login" class="btn btn-info btn-slider bg-yellow text-dark">Commencer</button>
     </div>
 
     <div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
