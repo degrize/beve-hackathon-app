@@ -76,12 +76,30 @@
             >
               Ce champ est obligatoire.
             </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('contact1')?.errors?.pattern">
+              Renseignez un numero de 10 chiffres.
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('contact1')?.errors?.validValidator">
+              Veuillez commencer par le prefixe 05
+            </small>
           </div>
         </div>
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="beveApp.createurAfricain.contact2" for="field_contact2">Contact 2</label>
           <input type="text" class="form-control" name="contact2" id="field_contact2" data-cy="contact2" formControlName="contact2" />
+          <div *ngIf="editForm.get('contact2')!.invalid && (editForm.get('contact2')!.dirty || editForm.get('contact2')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('contact2')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('contact2')?.errors?.pattern">
+              Renseignez un numero de 10 chiffres.
+            </small>
+          </div>
         </div>
 
         <div class="row mb-3">

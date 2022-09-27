@@ -6,11 +6,9 @@
     </div>
 
     <div class="d-flex flex-wrap justify-content-center align-items-center">
-      <button type="button" class="btn btn-info type">Musiciens</button>
-      <button type="button" class="btn btn-info type">Influenceurs</button>
-      <button type="button" class="btn btn-info type">Bloggeurs</button>
-      <button type="button" class="btn btn-info type">Artistes</button>
-      <button type="button" class="btn btn-info type">Info</button>
+      <button type="button" class="btn btn-info type" *ngFor="let categorieCreateur of categorieCreateurs">
+        <span> {{ categorieCreateur.categorie }} </span>
+      </button>
     </div>
 
     <div class="col-xl-6 d-flex flex-column align-items-center">
@@ -40,51 +38,29 @@
       </button>
     </div>
 
-    <div class="boutt col-xl-12 d-flex flex-column justify-content-center align-items-center">
-      <div>
-        <button type="button" class="btn btn-info" data-filter="all">Tout</button>
-        <button type="button" class="btn btn-info" data-filter=".green">Musiciens</button>
-        <button type="button" class="btn btn-info" data-filter=".blue">Influenceurs</button>
-        <button type="button" class="btn btn-info" data-filter=".pink">Bloggeurs</button>
-        <button type="button" class="btn btn-info" data-filter=".none">...</button>
+    <div class="boutt">
+      <div id="divFilter" (click)="startMyFilter()" class="d-flex flex-wrap justify-content-center align-items-center mb-3 pt-5 pr-5 pl-5">
+        <button type="button" class="btn btn-info mb-2" data-filter="all">Tout</button>
       </div>
 
-      <div class="col-xl-9 container">
-        <div class="card mix green">
-          <img class="card-img-top" src="../../../content/assets/img/beve/andre-hunter.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-        <div class="card mix blue">
-          <img class="card-img-top" src="../../../content/assets/img/beve/andre-hunter.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-        <div class="card mix pink">
-          <img class="card-img-top" src="../../../content/assets/img/beve/andre-hunter.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-        <div class="card mix blue">
-          <img class="card-img-top" src="../../../content/assets/img/beve/andre-hunter.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-        <div class="card mix pink">
-          <img class="card-img-top" src="../../../content/assets/img/beve/andre-hunter.jpg" alt="Card image cap" />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
+      <div class="container d-flex justify-content-center align-items-center flex-wrap p-5 bg-yellow rounded shadow">
+        <ng-container *ngFor="let createurAfricain of createurAfricains; let categorieClass">
+          <ng-container *ngFor="let categorieCreateur of createurAfricain?.categorieCreateurs">
+            <div [class]="'card mix rounded blue filter-' + categorieCreateur.id">
+              <a [routerLink]="'/createur/' + createurAfricain.label">
+                <img class="card-img-top" src="../../../content/assets/img/beve/andre-hunter.jpg" alt="Card image cap" />
+                <div class="card-body">
+                  <h5 class="card-title text-center">{{ createurAfricain.surnom }} / {{ categorieCreateur.categorie }}</h5>
+                  <p class="card-text">
+                    <small class="text-muted">
+                      {{ (createurAfricain.nomDeFamille + '').toUpperCase() }} {{ createurAfricain.prenom | shorten: 10 }}
+                    </small>
+                  </p>
+                </div>
+              </a>
+            </div>
+          </ng-container>
+        </ng-container>
       </div>
     </div>
 

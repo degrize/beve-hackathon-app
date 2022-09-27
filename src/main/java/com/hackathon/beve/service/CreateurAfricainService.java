@@ -1,6 +1,8 @@
 package com.hackathon.beve.service;
 
+import com.hackathon.beve.domain.CreateurAfricain;
 import com.hackathon.beve.service.dto.CreateurAfricainDTO;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -63,4 +65,10 @@ public interface CreateurAfricainService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    List<CreateurAfricain> findAllNoPageble();
+
+    CreateurAfricain findUser(Long id);
+
+    Optional<CreateurAfricainDTO> findOneByLabel(String label);
 }

@@ -1,57 +1,56 @@
 <div
   class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
-  style="
-    min-height: 600px;
-    background-image: url('../../../content/assets/img/beve/istockphoto.jpg');
-    background-size: cover;
-    background-position: center top;
+  [style]="
+    'min-height: 600px;' + 'background-image: url(' + photoProfile + ');' + 'background-size: cover;' + 'background-position: center top;'
   "
 >
   <!-- Mask -->
-  <span class="mask bg-gradient-yellow opacity-6"></span>
+  <span class="mask bg-yellow opacity-7"></span>
   <!-- Header container -->
   <div class="container-fluid d-flex align-items-center">
     <div class="row">
       <div class="col-lg-7 col-md-10">
-        <h1 class="display-2 text-white">Hello Jesse</h1>
-        <p class="text-white mt-0 mb-5">
-          This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks
-        </p>
-        <a routerLink="/account/settings" class="btn btn-info">Edit profile</a>
+        <h1 class="display-2 text-white">{{ account?.login }}</h1>
+        <p class="text-white mt-0 mb-5">Ceci est votre page de profil. Vous pouvez voir l'avancement de vos Dons</p>
+        <a
+          *ngIf="createurAfricain?.id; else pasCreteurAfricain"
+          [routerLink]="'/createur-africain/' + createurAfricain?.id + '/edit'"
+          class="btn btn-info"
+          >Editer votre profile</a
+        >
+        <ng-template #pasCreteurAfricain>
+          <a [routerLink]="'/create-page'" class="btn btn-info">Devenir createur africain</a>
+        </ng-template>
       </div>
     </div>
   </div>
 </div>
 <div class="container-fluid mt--7">
   <div class="row">
-    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-      <div class="card card-profile shadow">
-        <div class="row justify-content-center">
+    <div class="col-xl-12 order-xl-2 mb-5">
+      <div class="card card-profile shadow mb-5">
+        <div class="row justify-content-center mb-3">
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
               <a href="javascript:void(0)">
-                <img src="../../../content/assets/img/beve/programmer.png" class="rounded-circle" />
+                <img [src]="photoProfile" width="130px" class="rounded-circle" />
               </a>
             </div>
           </div>
         </div>
-        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-          <div class="d-flex justify-content-between">
-            <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
-            <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a>
-          </div>
-        </div>
-        <div class="card-body pt-0 pt-md-4">
-          <div class="text-center">
-            <h3>Jessica Jones<span class="font-weight-light">, 27</span></h3>
-            <div class="h5 font-weight-300"><i class="ni location_pin mr-2"></i>Bucharest, Romania</div>
-            <div class="h5 mt-4"><i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer</div>
-            <div><i class="ni education_hat mr-2"></i>University of Computer Science</div>
+        <div class="card-body mt-5">
+          <div class="text-center mt-5">
+            <h3>
+              {{ createurAfricain?.nomDeFamille }}<span class="font-weight-light"> {{ createurAfricain?.prenom }}</span>
+            </h3>
+            <div class="h5 mt-4"><i class="ni business_briefcase-24 mr-2"></i>AFRICA - BEVE</div>
+            <div><i class="ni education_hat mr-2"></i>{{ createurAfricain?.email }}</div>
             <hr class="my-4" />
             <p>
-              Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.
+              <b class="text-yellow">Tel</b> : {{ createurAfricain?.contact1 }} — <b class="text-yellow">Pays</b> :
+              {{ createurAfricain?.pays }} — <b class="text-yellow">Ville</b> : {{ createurAfricain?.ville }}
             </p>
-            <a routerLink="createur-africain">Voir Plus</a>
+            <a [routerLink]="'/createur-portfolio/' + createurAfricain?.id + '/view'">Voir ma page</a>
           </div>
         </div>
       </div>

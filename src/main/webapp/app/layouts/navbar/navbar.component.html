@@ -18,6 +18,15 @@
       <fa-icon icon="bars"></fa-icon>
     </a>
     <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="account !== null">
+      <div class="row">
+        <div class="col-6 collapse-brand"></div>
+        <div class="col-6 collapse-close">
+          <button type="button" class="navbar-toggler" (click)="toggleNavbar()">
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
@@ -57,11 +66,21 @@
             </span>
           </a>
         </li>
-        <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <a class="nav-link" routerLink="/create-page" (click)="collapseNavbar()">
-            <span>Créér votre page</span>
-          </a>
-        </li>
+        <ng-container *ngIf="createurAfricain?.id; else pasCompteCreateur">
+          <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link" [routerLink]="['/createur/', createurAfricain?.label]" (click)="collapseNavbar()">
+              <span>Ma Page</span>
+            </a>
+          </li>
+        </ng-container>
+        <ng-template #pasCompteCreateur>
+          <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link" routerLink="/create-page" (click)="collapseNavbar()">
+              <span>Créér votre page</span>
+            </a>
+          </li>
+        </ng-template>
+
         <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" *ngIf="languages && languages.length > 1">
           <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="languagesnavBarDropdown">
             <span>

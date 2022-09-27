@@ -18,6 +18,9 @@ import { SwiperModule } from 'swiper/angular';
 import { NextDirective } from './slide-gallery/next.directive';
 import { PrevDirective } from './slide-gallery/prev.directive';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { UsernamePipe } from './pipes/username.pipe';
+import { ShortenPipe } from './pipes/shorten.pipe';
 
 @NgModule({
   imports: [SharedLibsModule, SwiperModule, CarouselModule],
@@ -37,6 +40,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ItemCountComponent,
     FilterComponent,
     SlideGalleryComponent,
+    TimeAgoPipe,
+    ShortenPipe,
+    UsernamePipe,
   ],
   exports: [
     SharedLibsModule,
@@ -53,6 +59,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     SortDirective,
     ItemCountComponent,
     FilterComponent,
+    TimeAgoPipe,
+    ShortenPipe,
+    UsernamePipe,
   ],
 })
 export class SharedModule {}

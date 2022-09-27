@@ -1,7 +1,10 @@
 package com.hackathon.beve.web.rest;
 
+import com.hackathon.beve.domain.CreateurAfricain;
+import com.hackathon.beve.domain.User;
 import com.hackathon.beve.repository.CreateurAfricainRepository;
 import com.hackathon.beve.service.CreateurAfricainService;
+import com.hackathon.beve.service.UserService;
 import com.hackathon.beve.service.dto.CreateurAfricainDTO;
 import com.hackathon.beve.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -13,6 +16,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,6 +39,9 @@ public class CreateurAfricainResource {
     private final Logger log = LoggerFactory.getLogger(CreateurAfricainResource.class);
 
     private static final String ENTITY_NAME = "createurAfricain";
+
+    @Autowired
+    private UserService userService;
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -192,5 +199,29 @@ public class CreateurAfricainResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/createur-africains/liste")
+    public ResponseEntity<List<CreateurAfricain>> getAllCreateurAfricainsNoPageble() {
+        log.debug("REST request to get list of CreateurAfricain");
+        List<CreateurAfricain> createurAfricainList = createurAfricainService.findAllNoPageble();
+        return ResponseEntity.ok().body(createurAfricainList);
+    }
+
+    @GetMapping(value = "/createur-africains/account", params = { "login" })
+    public ResponseEntity<CreateurAfricain> findUser(@RequestParam(value = "login") String login) {
+        log.debug(" =========REST request to get a User : {}", login);
+
+        User userCurrent = userService.findUser(login);
+        CreateurAfricain result = createurAfricainService.findUser(userCurrent.getId());
+
+        return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping("/createur-africains/page-lien/{label}")
+    public ResponseEntity<CreateurAfricainDTO> getCreateurAfricainByLabel(@PathVariable String label) {
+        log.debug("REST request to get CreateurAfricain by Label : {}", label);
+        Optional<CreateurAfricainDTO> createurAfricainDTO = createurAfricainService.findOneByLabel(label);
+        return ResponseUtil.wrapOrNotFound(createurAfricainDTO);
     }
 }

@@ -5,6 +5,8 @@ import { IReseauxSociaux } from 'app/entities/reseaux-sociaux/reseaux-sociaux.mo
 import { ISouscription } from 'app/entities/souscription/souscription.model';
 import { Sexe } from 'app/entities/enumerations/sexe.model';
 import { SituationMatrimoniale } from 'app/entities/enumerations/situation-matrimoniale.model';
+import { EtatCompte } from '../enumerations/etat-compte.model';
+import { IUser } from '../../admin/user-management/user-management.model';
 
 export interface ICreateurAfricain {
   id: number;
@@ -22,6 +24,10 @@ export interface ICreateurAfricain {
   adresse?: string | null;
   situationMatrimoniale?: SituationMatrimoniale | null;
   dateDebut?: dayjs.Dayjs | null;
+  etatCompte?: EtatCompte | null;
+  photo?: string | null;
+  photoContentType?: string | null;
+  user?: IUser | null;
   inspirations?: Pick<IInspiration, 'id' | 'nom'>[] | null;
   categorieCreateurs?: Pick<ICategorieCreateur, 'id' | 'categorie'>[] | null;
   reseauxSociauxes?: Pick<IReseauxSociaux, 'id' | 'nom'>[] | null;

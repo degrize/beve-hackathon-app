@@ -12,6 +12,7 @@
         </div>
       </div>
     </form>
+    <a routerLink="/" class="nav-link pr-0 text-white" jhiTranslate="global.menu.home">Accueil</a>
     <!-- User -->
     <ul class="navbar-nav align-items-center d-none d-md-flex">
       <li class="nav-item" ngbDropdown placement="bottom-right">
@@ -38,7 +39,7 @@
             <span jhiTranslate="global.menu.account.password">Mot de passe</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#!" class="dropdown-item">
+          <a (click)="logout()" class="dropdown-item">
             <i class="ni ni-user-run"></i>
             <span jhiTranslate="global.menu.account.logout">Sortie</span>
           </a>

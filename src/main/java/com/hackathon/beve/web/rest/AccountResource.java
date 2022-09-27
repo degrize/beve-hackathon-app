@@ -184,6 +184,13 @@ public class AccountResource {
         }
     }
 
+    public AdminUserDTO getAccountUser() {
+        return userService
+            .getUserWithAuthorities()
+            .map(AdminUserDTO::new)
+            .orElseThrow(() -> new AccountResourceException("User could not be found"));
+    }
+
     private static boolean isPasswordLengthInvalid(String password) {
         return (
             StringUtils.isEmpty(password) ||

@@ -1,10 +1,12 @@
 package com.hackathon.beve.service.impl;
 
 import com.hackathon.beve.domain.CategorieCreateur;
+import com.hackathon.beve.domain.CreateurAfricain;
 import com.hackathon.beve.repository.CategorieCreateurRepository;
 import com.hackathon.beve.service.CategorieCreateurService;
 import com.hackathon.beve.service.dto.CategorieCreateurDTO;
 import com.hackathon.beve.service.mapper.CategorieCreateurMapper;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,5 +85,12 @@ public class CategorieCreateurServiceImpl implements CategorieCreateurService {
     public void delete(Long id) {
         log.debug("Request to delete CategorieCreateur : {}", id);
         categorieCreateurRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CategorieCreateur> findAllNoPageble() {
+        log.debug("Request to get list of Categories");
+        return categorieCreateurRepository.findAllWithEagerRelationships();
     }
 }

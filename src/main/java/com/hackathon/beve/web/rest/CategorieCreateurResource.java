@@ -1,5 +1,7 @@
 package com.hackathon.beve.web.rest;
 
+import com.hackathon.beve.domain.CategorieCreateur;
+import com.hackathon.beve.domain.CreateurAfricain;
 import com.hackathon.beve.repository.CategorieCreateurRepository;
 import com.hackathon.beve.service.CategorieCreateurService;
 import com.hackathon.beve.service.dto.CategorieCreateurDTO;
@@ -183,5 +185,12 @@ public class CategorieCreateurResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/categorie-createurs/liste")
+    public ResponseEntity<List<CategorieCreateur>> getAllCategorieCreateursNoPageble() {
+        log.debug("REST request to get list of CreateurAfricain");
+        List<CategorieCreateur> categorieCreateursList = categorieCreateurService.findAllNoPageble();
+        return ResponseEntity.ok().body(categorieCreateursList);
     }
 }

@@ -1,0 +1,161 @@
+[
+  {
+    "country": "Afghanistan",
+    "dial_code": "93"
+  },
+  {
+    "country": "Aland Islands",
+    "dial_code": "358"
+  },
+  {
+    "country": "Albania",
+    "dial_code": "355"
+  },
+  {
+    "country": "Algeria",
+    "dial_code": "213"
+  },
+  {
+    "country": "Angola",
+    "dial_code": "244"
+  },
+  {
+    "country": "Anguilla",
+    "dial_code": "1264"
+  },
+  {
+    "country": "Azerbaijan",
+    "dial_code": "994"
+  },
+
+  {
+    "country": "Botswana",
+    "dial_code": "267"
+  },
+
+  {
+    "country": "Burkina Faso",
+    "dial_code": "226"
+  },
+  {
+    "country": "Burundi",
+    "dial_code": "257"
+  },
+  {
+    "country": "Cameroon",
+    "dial_code": "237"
+  },
+
+  {
+    "country": "Cape Verde",
+    "dial_code": "238"
+  },
+  {
+    "country": "Central African Republic",
+    "dial_code": "236"
+  },
+  {
+    "country": "Chad",
+    "dial_code": "235"
+  },
+  {
+    "country": "Comoros",
+    "dial_code": "269"
+  },
+  {
+    "country": "Congo",
+    "dial_code": "242"
+  },
+  {
+    "country": "Congo RDC",
+    "dial_code": "243"
+  },
+  {
+    "country": "Cote d'Ivoire",
+    "dial_code": "225"
+  },
+  {
+    "country": "Egypt",
+    "dial_code": "20"
+  },
+  {
+    "country": "Equatorial Guinea",
+    "dial_code": "240"
+  },
+  {
+    "country": "Ethiopia",
+    "dial_code": "251"
+  },
+  {
+    "country": "Gabon",
+    "dial_code": "241"
+  },
+  {
+    "country": "Gambia",
+    "dial_code": "220"
+  },
+  {
+    "country": "Ghana",
+    "dial_code": "233"
+  },
+  {
+    "country": "Guinea",
+    "dial_code": "224"
+  },
+  {
+    "country": "Guinea-Bissau",
+    "dial_code": "245"
+  },
+  {
+    "country": "Kenya",
+    "dial_code": "254"
+  },
+  {
+    "country": "Liberia",
+    "dial_code": "231"
+  },
+  {
+    "country": "Madagascar",
+    "dial_code": "261"
+  },
+  {
+    "country": "Mali",
+    "dial_code": "223"
+  },
+  {
+    "country": "Mauritania",
+    "dial_code": "222"
+  },
+  {
+    "country": "Niger",
+    "dial_code": "227"
+  },
+  {
+    "country": "Nigeria",
+    "dial_code": "234"
+  },
+  {
+    "country": "Rwanda",
+    "dial_code": "250"
+  },
+  {
+    "country": "Senegal",
+    "dial_code": "221"
+  },
+  {
+    "country": "South Africa",
+    "dial_code": "27"
+  },
+  {
+    "country": "Togo",
+    "dial_code": "228"
+  },
+  {
+    "country": "Zambia",
+    "dial_code": "260"
+  },
+  {
+    "country": "Zimbabwe",
+    "dial_code": "263"
+  }
+]

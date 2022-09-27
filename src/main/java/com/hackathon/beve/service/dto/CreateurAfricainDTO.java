@@ -1,5 +1,6 @@
 package com.hackathon.beve.service.dto;
 
+import com.hackathon.beve.domain.enumeration.EtatCompte;
 import com.hackathon.beve.domain.enumeration.Sexe;
 import com.hackathon.beve.domain.enumeration.SituationMatrimoniale;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import javax.persistence.Lob;
 import javax.validation.constraints.*;
 
 /**
@@ -52,6 +54,15 @@ public class CreateurAfricainDTO implements Serializable {
     private SituationMatrimoniale situationMatrimoniale;
 
     private LocalDate dateDebut;
+
+    private EtatCompte etatCompte;
+
+    @Lob
+    private byte[] photo;
+
+    private String photoContentType;
+
+    private UserDTO jhiUser;
 
     private Set<InspirationDTO> inspirations = new HashSet<>();
 
@@ -203,6 +214,30 @@ public class CreateurAfricainDTO implements Serializable {
         this.reseauxSociauxes = reseauxSociauxes;
     }
 
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+
+    public String getPhotoContentType() {
+        return photoContentType;
+    }
+
+    public void setPhotoContentType(String photoContentType) {
+        this.photoContentType = photoContentType;
+    }
+
+    public UserDTO getUser() {
+        return jhiUser;
+    }
+
+    public void setUser(UserDTO user) {
+        this.jhiUser = user;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -246,6 +281,9 @@ public class CreateurAfricainDTO implements Serializable {
             ", inspirations=" + getInspirations() +
             ", categorieCreateurs=" + getCategorieCreateurs() +
             ", reseauxSociauxes=" + getReseauxSociauxes() +
+            ", photo='" + getPhoto() + "'" +
+            ", photoContentType='" + getPhotoContentType() + "'" +
+            ", jhiUser=" + getUser() +
             "}";
     }
 }

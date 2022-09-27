@@ -6,7 +6,8 @@ export interface ITransaction {
   numeroMtn?: string | null;
   montant?: number | null;
   devise?: Devise | null;
-  dateTransaction?: dayjs.Dayjs | null;
+  dateTransaction?: dayjs.Dayjs | null | string;
+  petitMessage?: string | null;
 }
 
 export type NewTransaction = Omit<ITransaction, 'id'> & { id: null };

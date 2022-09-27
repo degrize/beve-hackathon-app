@@ -47,6 +47,10 @@ export class CategorieCreateurService {
     return this.http.get<ICategorieCreateur[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
+  getCategorieCreateursList(): Observable<HttpResponse<any>> {
+    return this.http.get<ICategorieCreateur[]>(`${this.resourceUrl}/liste`, { observe: 'response' });
+  }
+
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

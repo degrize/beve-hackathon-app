@@ -50,7 +50,6 @@
                     >
 
                     <ng-select
-                      [clearable]="true"
                       placeholder="choisir la catégorie"
                       [multiple]="true"
                       data-cy="categorieCreateur"
@@ -66,12 +65,27 @@
                         {{ categorieCreateurOption.categorie }}
                       </ng-option>
                     </ng-select>
+                    <div
+                      *ngIf="
+                        editForm.get('categorieCreateurs')!.invalid &&
+                        (editForm.get('categorieCreateurs')!.dirty || editForm.get('categorieCreateurs')!.touched)
+                      "
+                    >
+                      <small
+                        class="form-text text-danger"
+                        *ngIf="editForm.get('categorieCreateurs')?.errors?.required"
+                        jhiTranslate="entity.validation.required"
+                      >
+                        Ce champ est obligatoire.
+                      </small>
+                    </div>
                   </div>
 
                   <div class="mb-3 form-group">
                     <label jhiTranslate="beveApp.createurAfricain.reseauxSociaux" for="field_reseauxSociauxes">Reseaux Sociaux</label>
                     <ng-select
-                      [clearable]="true"
+                      placement="bottom"
+                      ngbTooltip="Les réseaux sociaux que vous utilisez"
                       placeholder=" reseaux Sociaux"
                       [multiple]="true"
                       data-cy="reseauxSociaux"
@@ -84,9 +98,23 @@
                         {{ reseauxSociauxOption.nom }}
                       </ng-option>
                     </ng-select>
+                    <div
+                      *ngIf="
+                        editForm.get('reseauxSociauxes')!.invalid &&
+                        (editForm.get('reseauxSociauxes')!.dirty || editForm.get('reseauxSociauxes')!.touched)
+                      "
+                    >
+                      <small
+                        class="form-text text-danger"
+                        *ngIf="editForm.get('reseauxSociauxes')?.errors?.required"
+                        jhiTranslate="entity.validation.required"
+                      >
+                        Ce champ est obligatoire.
+                      </small>
+                    </div>
                   </div>
 
-                  <div class="mb-3 form-group">
+                  <div class="mb-3 form-group w-60">
                     <label class="form-label" jhiTranslate="beveApp.createurAfricain.surnom" for="field_surnom">Surnom</label>
                     <input
                       type="text"
@@ -96,13 +124,25 @@
                       data-cy="surnom"
                       formControlName="surnom"
                     />
+                    <div *ngIf="editForm.get('surnom')!.invalid && (editForm.get('surnom')!.dirty || editForm.get('contact1')!.touched)">
+                      <small
+                        class="form-text text-danger"
+                        *ngIf="editForm.get('surnom')?.errors?.required"
+                        jhiTranslate="entity.validation.required"
+                      >
+                        Ce champ est obligatoire.
+                      </small>
+                      <small class="form-text text-danger" *ngIf="editForm.get('surnom')?.errors?.minLength">
+                        Renseignez au moins 2 caractères.
+                      </small>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="step">
                 <h4>Informations Personnelles</h4>
-                <div class="row mb-3">
+                <div class="row mb-3 w-40">
                   <label class="form-label" jhiTranslate="beveApp.createurAfricain.nomDeFamille" for="field_nomDeFamille"
                     >Nom De Famille</label
                   >
@@ -143,44 +183,80 @@
                     </small>
                   </div>
                 </div>
-                <div class="row mb-3">
+                <div class="row mb-3 w-40">
                   <label class="form-label" jhiTranslate="beveApp.createurAfricain.contact2" for="field_contact2">Contact 2</label>
                   <input
-                    type="number"
+                    type="text"
                     class="form-control"
                     name="contact2"
                     id="field_contact2"
                     data-cy="contact2"
                     formControlName="contact2"
                   />
-                </div>
-                <div class="row mb-3">
-                  <label class="form-label" jhiTranslate="beveApp.createurAfricain.pays" for="field_pays">Pays</label>
-                  <input type="text" class="form-control" name="pays" id="field_pays" data-cy="pays" formControlName="pays" />
-                  <div *ngIf="editForm.get('pays')!.invalid && (editForm.get('pays')!.dirty || editForm.get('pays')!.touched)">
+                  <div *ngIf="editForm.get('contact2')!.invalid && (editForm.get('contact2')!.dirty || editForm.get('contact2')!.touched)">
                     <small
                       class="form-text text-danger"
-                      *ngIf="editForm.get('pays')?.errors?.required"
+                      *ngIf="editForm.get('contact2')?.errors?.required"
                       jhiTranslate="entity.validation.required"
                     >
                       Ce champ est obligatoire.
+                    </small>
+                    <small class="form-text text-danger" *ngIf="editForm.get('contact2')?.errors?.pattern">
+                      Renseignez un numero de 10 chiffres.
                     </small>
                   </div>
                 </div>
-                <div class="row mb-3">
-                  <label class="form-label" jhiTranslate="beveApp.createurAfricain.sexe" for="field_sexe">Sexe</label>
-                  <select class="form-control" name="sexe" formControlName="sexe" id="field_sexe" data-cy="sexe">
-                    <option [ngValue]="null">{{ 'beveApp.Sexe.null' | translate }}</option>
-                    <option *ngFor="let sexe of sexeValues" [value]="sexe">{{ 'beveApp.Sexe.' + sexe | translate }}</option>
-                  </select>
-                  <div *ngIf="editForm.get('sexe')!.invalid && (editForm.get('sexe')!.dirty || editForm.get('sexe')!.touched)">
-                    <small
-                      class="form-text text-danger"
-                      *ngIf="editForm.get('sexe')?.errors?.required"
-                      jhiTranslate="entity.validation.required"
+                <div class="row">
+                  <div class="form-group w-60">
+                    <label class="form-label" jhiTranslate="beveApp.createurAfricain.pays" for="field_pays">Pays</label>
+                    <ng-select
+                      name="pays"
+                      formControlName="pays"
+                      [placeholder]="'beveApp.createurAfricain.pays' | translate"
+                      id="field_pays"
+                      data-cy="pays"
                     >
-                      Ce champ est obligatoire.
-                    </small>
+                      <ng-option *ngFor="let country of countryList" [value]="country.country">
+                        {{ country.country }} (+{{ country.dial_code }})
+                      </ng-option>
+                    </ng-select>
+                    <div *ngIf="editForm.get('pays')!.invalid && (editForm.get('pays')!.dirty || editForm.get('pays')!.touched)">
+                      <small
+                        class="form-text text-danger"
+                        *ngIf="editForm.get('pays')?.errors?.required"
+                        jhiTranslate="entity.validation.required"
+                      >
+                        Ce champ est obligatoire.
+                      </small>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="w-60 form-group">
+                    <label class="form-label" jhiTranslate="beveApp.createurAfricain.sexe" for="field_sexe">Sexe</label>
+                    <ng-select
+                      [clearable]="true"
+                      placeholder="sexe"
+                      [multiple]="false"
+                      data-cy="sexe"
+                      id="field_sexe"
+                      name="sexe"
+                      formControlName="sexe"
+                    >
+                      <ng-option *ngFor="let sexe of sexeValues" [value]="sexe">
+                        {{ 'beveApp.Sexe.' + sexe | translate }}
+                      </ng-option>
+                    </ng-select>
+
+                    <div *ngIf="editForm.get('sexe')!.invalid && (editForm.get('sexe')!.dirty || editForm.get('sexe')!.touched)">
+                      <small
+                        class="form-text text-danger"
+                        *ngIf="editForm.get('sexe')?.errors?.required"
+                        jhiTranslate="entity.validation.required"
+                      >
+                        Ce champ est obligatoire.
+                      </small>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -190,7 +266,6 @@
                   <div class="form-group mb-3">
                     <label jhiTranslate="beveApp.createurAfricain.inspiration" for="field_inspirations">Inspiration</label>
                     <ng-select
-                      [clearable]="true"
                       class="form-control-lg"
                       placeholder="ceux qui vous inspire"
                       [multiple]="true"
@@ -227,6 +302,8 @@
                         <span class="input-group-text" id="basic-addon3">https://beve.com/createur/</span>
                       </div>
                       <input
+                        placement="bottom"
+                        ngbTooltip="Le suffixe du lien de votre page"
                         type="text"
                         class="form-control"
                         id="field_label"
@@ -244,13 +321,16 @@
                       >
                         Ce champ est obligatoire.
                       </small>
+                      <small class="form-text text-danger" *ngIf="editForm.get('label')?.errors?.minLength">
+                        Renseignez au moins 2 caractères.
+                      </small>
                     </div>
                   </div>
 
-                  <div class="form-grouprow mb-3">
+                  <div class="form-grouprow mb-3 w-40">
                     <label class="form-label" jhiTranslate="beveApp.createurAfricain.contact1" for="field_contact1">Contact 1</label>
                     <input
-                      type="number"
+                      type="text"
                       class="form-control"
                       name="contact1"
                       id="field_contact1"
@@ -267,8 +347,66 @@
                       >
                         Ce champ est obligatoire.
                       </small>
+                      <small class="form-text text-danger" *ngIf="editForm.get('contact1')?.errors?.pattern">
+                        Renseignez un numero de 10 chiffres.
+                      </small>
+                      <small class="form-text text-danger" *ngIf="editForm.get('contact1')?.errors?.validValidator">
+                        Veuillez commencer par le prefixe 05
+                      </small>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <div class="step">
+                <div class="mt-1">
+                  <div class="closing-text">
+                    <h4>Ajouter une photo</h4>
+                    <p>
+                      Veuiller Inserer une image qui vous identifie. <br />
+                      L'image sera affichée comme une photo de profil sur votre page BEVE.
+                    </p>
+                  </div>
+                </div>
+                <div class="row mb-3 mb-5">
+                  <label class="form-label" for="field_photo">Photo</label>
+                  <div class="form-control">
+                    <div *ngIf="editForm.get('photo')!.value" class="form-text text-danger clearfix">
+                      <a
+                        class="pull-start"
+                        (click)="openFile(editForm.get('photo')!.value!, editForm.get('photoContentType')!.value!)"
+                        jhiTranslate="entity.action.open"
+                        >Ouvrir</a
+                      ><br />
+                      <span class="pull-start"
+                        >{{ editForm.get('photoContentType')!.value }}, {{ byteSize(editForm.get('photo')!.value!) }}</span
+                      >
+                      <button
+                        type="button"
+                        (click)="editForm.patchValue({ photo: undefined, photoContentType: undefined })"
+                        class="btn btn-secondary btn-xs pull-end"
+                      >
+                        <fa-icon icon="times"></fa-icon>
+                      </button>
+                    </div>
+                    <input
+                      type="file"
+                      id="file_imageVideo"
+                      data-cy="imageVideo"
+                      (change)="setFileData($event, 'photo', false)"
+                      jhiTranslate="entity.action.addblob"
+                    />
+                  </div>
+                  <input type="hidden" class="form-control" name="photo" id="field_photo" data-cy="photo" formControlName="photo" />
+                  <input
+                    type="hidden"
+                    class="form-control"
+                    name="photoContentType"
+                    id="field_photoContentType"
+                    formControlName="photoContentType"
+                  />
+
+                  <img [src]="'data:' + editForm.get('imageVideoContentType') + ';base64,' + editForm.get('imageVideo')" alt="" />
                 </div>
               </div>
 
@@ -280,26 +418,23 @@
                       Passer cette etape qu'après avoir lu les règles et conditions d'utilisation.Si vous validez cette etape BEVE considère
                       que vous etes d'accord avec nos règles & conditions.
                     </p>
-                    <p>Clic sur le bouton suivant pour continuer</p>
                   </div>
                 </div>
                 <label class="custom-toggle">
                   <input type="checkbox" [checked]="false" />
                   <span class="custom-toggle-slider rounded-circle bg-yellow" data-label-off="No" data-label-on="Yes"></span>
                 </label>
+                <p>Clic sur le bouton suivant pour <span class="text-yellow">Sauvegarder</span></p>
               </div>
               <div id="success">
                 <div class="mt-5">
-                  <h4>Success! We'll get back to you ASAP!</h4>
-                  <p>
-                    Meanwhile, clean your hands often, use soap and water, or an alcohol-based hand rub, maintain a safe distance from
-                    anyone who is coughing or sneezing and always wear a mask when physical distancing is not possible.
-                  </p>
+                  <h4>Success! We'll get back to you BEVE HACKATHON!</h4>
+                  <p></p>
                   <a class="back-link" href="">Go back from the beginning ➜</a>
                 </div>
               </div>
             </div>
-            <div id="q-box__buttons">
+            <div id="q-box__buttons" class="mb-2">
               <button id="prev-btn" class="btn bg-dark" type="button">Precedent</button>
               <button id="next-btn" class="btn" type="button">Suivant</button>
               <button type="submit" data-cy="entityCreateSaveButton" [disabled]="editForm.invalid || isSaving" class="btn" id="submit-btn">

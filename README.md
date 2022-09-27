@@ -233,27 +233,31 @@ npm i --save-dev @types/chart.js
 
 ```
 
-When running Docker Desktop on MacOS Big Sur or later, consider enabling experimental `Use the new Virtualization framework` for better processing performance ([disk access performance is worse](https://github.com/docker/roadmap/issues/7)).
+# le boton spprimer
 
-For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`jhipster docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
+Ajouter ce code dans content/asset/scss/customer/\_variables.scss
 
-## Continuous Integration (optional)
+```
+//Modal z-index
+$zindex-modal-backdrop: 1500;
+$zindex-modal: 1500;
+```
 
-To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
+# Mes Requetes
 
-[jhipster homepage and latest documentation]: https://www.jhipster.tech
-[jhipster 7.9.1 archive]: https://www.jhipster.tech/documentation-archive/v7.9.1
-[using jhipster in development]: https://www.jhipster.tech/documentation-archive/v7.9.1/development/
-[using docker and docker-compose]: https://www.jhipster.tech/documentation-archive/v7.9.1/docker-compose
-[using jhipster in production]: https://www.jhipster.tech/documentation-archive/v7.9.1/production/
-[running tests page]: https://www.jhipster.tech/documentation-archive/v7.9.1/running-tests/
-[code quality page]: https://www.jhipster.tech/documentation-archive/v7.9.1/code-quality/
-[setting up continuous integration]: https://www.jhipster.tech/documentation-archive/v7.9.1/setting-up-ci/
-[node.js]: https://nodejs.org/
-[npm]: https://www.npmjs.com/
-[webpack]: https://webpack.github.io/
-[browsersync]: https://www.browsersync.io/
-[jest]: https://facebook.github.io/jest/
-[leaflet]: https://leafletjs.com/
-[definitelytyped]: https://definitelytyped.org/
-[angular cli]: https://cli.angular.io/
+pour la relation entre le createur africain et son compte utilisateur Beve
+
+```
+alter table "public".createur_africain
+    add photo bytea,
+    add photo_content_type character varying(255),
+    add jhi_user_id bigint,
+    add CONSTRAINT fk_createur_africain__jhi_user_id FOREIGN KEY (jhi_user_id)
+        REFERENCES jhi_user (id) MATCH SIMPLE
+            ON UPDATE NO ACTION ON DELETE NO ACTION
+```
+
+```
+alter table "public".createur_africain
+add etat_compte varchar(255)
+```

@@ -1,13 +1,7 @@
 package com.hackathon.beve.service.mapper;
 
-import com.hackathon.beve.domain.CategorieCreateur;
-import com.hackathon.beve.domain.CreateurAfricain;
-import com.hackathon.beve.domain.Inspiration;
-import com.hackathon.beve.domain.ReseauxSociaux;
-import com.hackathon.beve.service.dto.CategorieCreateurDTO;
-import com.hackathon.beve.service.dto.CreateurAfricainDTO;
-import com.hackathon.beve.service.dto.InspirationDTO;
-import com.hackathon.beve.service.dto.ReseauxSociauxDTO;
+import com.hackathon.beve.domain.*;
+import com.hackathon.beve.service.dto.*;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.mapstruct.*;
@@ -20,6 +14,7 @@ public interface CreateurAfricainMapper extends EntityMapper<CreateurAfricainDTO
     @Mapping(target = "inspirations", source = "inspirations", qualifiedByName = "inspirationNomSet")
     @Mapping(target = "categorieCreateurs", source = "categorieCreateurs", qualifiedByName = "categorieCreateurCategorieSet")
     @Mapping(target = "reseauxSociauxes", source = "reseauxSociauxes", qualifiedByName = "reseauxSociauxNomSet")
+    @Mapping(target = "user", source = "user", qualifiedByName = "jhiUserId")
     CreateurAfricainDTO toDto(CreateurAfricain s);
 
     @Mapping(target = "removeInspiration", ignore = true)
@@ -59,4 +54,9 @@ public interface CreateurAfricainMapper extends EntityMapper<CreateurAfricainDTO
     default Set<ReseauxSociauxDTO> toDtoReseauxSociauxNomSet(Set<ReseauxSociaux> reseauxSociaux) {
         return reseauxSociaux.stream().map(this::toDtoReseauxSociauxNom).collect(Collectors.toSet());
     }
+
+    @Named("jhiUserId")
+    @BeanMapping(ignoreByDefault = true)
+    @Mapping(target = "id", source = "id")
+    UserDTO toDtoUserId(User user);
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import dayjs from 'dayjs/esm';
@@ -9,6 +9,7 @@ import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { ICreateurAfricain, NewCreateurAfricain } from '../createur-africain.model';
+import { ICategorieCreateur } from '../../categorie-createur/categorie-createur.model';
 
 export type PartialUpdateCreateurAfricain = Partial<ICreateurAfricain> & Pick<ICreateurAfricain, 'id'>;
 
@@ -62,11 +63,30 @@ export class CreateurAfricainService {
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
+  findByLabel(label: string): Observable<EntityResponseType> {
+    return this.http
+      .get<RestCreateurAfricain>(`${this.resourceUrl}/page-lien/${label}`, { observe: 'response' })
+      .pipe(map(res => this.convertResponseFromServer(res)));
+  }
+
+  findByJhiUserId(req?: any): Observable<HttpResponse<ICreateurAfricain>> {
+    const params: HttpParams = createRequestOption(req);
+    params.set('login', req.login);
+    return this.http.get<ICreateurAfricain>(this.applicationConfigService.getEndpointFor('api/createur-africains/account'), {
+      params,
+      observe: 'response',
+    });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
       .get<RestCreateurAfricain[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map(res => this.convertResponseArrayFromServer(res)));
+  }
+
+  getCreateurAfricainsList(): Observable<HttpResponse<any>> {
+    return this.http.get<ICreateurAfricain[]>(`${this.resourceUrl}/liste`, { observe: 'response' });
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {

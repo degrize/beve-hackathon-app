@@ -1,6 +1,7 @@
 package com.hackathon.beve.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hackathon.beve.domain.enumeration.EtatCompte;
 import com.hackathon.beve.domain.enumeration.Sexe;
 import com.hackathon.beve.domain.enumeration.SituationMatrimoniale;
 import java.io.Serializable;
@@ -37,17 +38,17 @@ public class CreateurAfricain implements Serializable {
     private String prenom;
 
     @NotNull
-    @Column(name = "label", nullable = false)
+    @Column(name = "label", unique = true, nullable = false)
     private String label;
 
-    @Column(name = "surnom")
+    @Column(name = "surnom", unique = true)
     private String surnom;
 
     @NotNull
-    @Column(name = "contact_1", nullable = false)
+    @Column(name = "contact_1", unique = true, nullable = false)
     private String contact1;
 
-    @Column(name = "contact_2")
+    @Column(name = "contact_2", unique = true)
     private String contact2;
 
     @NotNull
@@ -78,6 +79,17 @@ public class CreateurAfricain implements Serializable {
 
     @Column(name = "date_debut")
     private LocalDate dateDebut;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "etat_compte")
+    private EtatCompte etatCompte;
+
+    @Lob
+    @Column(name = "photo")
+    private byte[] photo;
+
+    @Column(name = "photo_content_type")
+    private String photoContentType;
 
     @ManyToMany
     @JoinTable(
@@ -113,6 +125,10 @@ public class CreateurAfricain implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "createurAfricains" }, allowSetters = true)
     private Set<Souscription> souscriptions = new HashSet<>();
+
+    @ManyToOne
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private User jhiUser;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -246,6 +262,19 @@ public class CreateurAfricain implements Serializable {
         this.dateDeNaissance = dateDeNaissance;
     }
 
+    public EtatCompte getEtatCompte() {
+        return this.etatCompte;
+    }
+
+    public CreateurAfricain etatCompte(EtatCompte etatCompte) {
+        this.setEtatCompte(etatCompte);
+        return this;
+    }
+
+    public void setEtatCompte(EtatCompte etatCompte) {
+        this.etatCompte = etatCompte;
+    }
+
     public String getPays() {
         return this.pays;
     }
@@ -309,6 +338,45 @@ public class CreateurAfricain implements Serializable {
 
     public void setDateDebut(LocalDate dateDebut) {
         this.dateDebut = dateDebut;
+    }
+
+    public byte[] getPhoto() {
+        return this.photo;
+    }
+
+    public CreateurAfricain photo(byte[] photo) {
+        this.setPhoto(photo);
+        return this;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+
+    public String getPhotoContentType() {
+        return this.photoContentType;
+    }
+
+    public CreateurAfricain photoContentType(String photoContentType) {
+        this.photoContentType = photoContentType;
+        return this;
+    }
+
+    public User getUser() {
+        return this.jhiUser;
+    }
+
+    public void setUser(User user) {
+        this.jhiUser = user;
+    }
+
+    public CreateurAfricain jhiUser(User user) {
+        this.setUser(user);
+        return this;
+    }
+
+    public void setPhotoContentType(String photoContentType) {
+        this.photoContentType = photoContentType;
     }
 
     public Set<Inspiration> getInspirations() {
@@ -449,12 +517,15 @@ public class CreateurAfricain implements Serializable {
             ", contact2='" + getContact2() + "'" +
             ", sexe='" + getSexe() + "'" +
             ", email='" + getEmail() + "'" +
+            ", etatCompte='" + getEtatCompte() + "'" +
             ", dateDeNaissance='" + getDateDeNaissance() + "'" +
             ", pays='" + getPays() + "'" +
             ", ville='" + getVille() + "'" +
             ", adresse='" + getAdresse() + "'" +
             ", situationMatrimoniale='" + getSituationMatrimoniale() + "'" +
             ", dateDebut='" + getDateDebut() + "'" +
+            ", photo='" + getPhoto() + "'" +
+            ", photoContentType='" + getPhotoContentType() + "'" +
             "}";
     }
 }

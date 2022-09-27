@@ -1,36 +1,85 @@
-<div class="createur flex-column d-flex justify-content-center">
-  <div class="card">
-    <img src="../../../content/images/jhipster_family_member_2_head-256.png" class="rounded-circle" alt="Hollywood Sign on The Hill" />
+<div class="createur flex-column d-flex justify-content-center m-3">
+  <form [formGroup]="mainForm" (ngSubmit)="save()">
+    <div class="card p-4 col-xl-6 shadow">
+      <img
+        [src]="'data:' + createurAfricain?.photoContentType + ';base64,' + createurAfricain?.photo"
+        [alt]="createurAfricain?.surnom"
+        class="rounded-circle"
+        alt="Hollywood Sign on The Hill"
+      />
 
-    <p class="titre text-black">SOUTIEN A xxx</p>
+      <p class="titre text-black">SOUTIEN A {{ createurAfricain?.surnom }}</p>
+      <p class="titre text-black">
+        Nom à l'état Civil {{ createurAfricain?.prenom }} {{ (createurAfricain?.nomDeFamille + '').toUpperCase() }}
+      </p>
 
-    <img src="../../../content/images/mtn.png" class="mtn" alt="Hollywood Sign on The Hill" />
+      <img src="../../../content/images/mtn.png" class="mtn" alt="Hollywood Sign on The Hill" />
 
-    <p class="texte text-black">Achat de bidon d'eau pour xxxx afin de le soutenir.</p>
+      <p class="texte text-black">Achat de bidon d'eau pour {{ createurAfricain?.surnom }} afin de le soutenir.</p>
 
-    <div class="row">
-      <div class="col-sm-6 form-group">
-        <p class="tt">Montant</p>
-        <input type="text" class="form-control" id="name" name="name" placeholder="100" required />
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <p class="tt">Montant</p>
+          <input
+            formControlName="montant"
+            type="text"
+            class="form-control"
+            id="inputMontant"
+            name="inputMontant"
+            placeholder="renseignez le montant"
+          />
+          <div *ngIf="mainForm.get('montant')!.invalid && (mainForm.get('montant')!.dirty || mainForm.get('montant')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="mainForm.get('montant')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('montant')?.errors?.minLength">
+              Renseignez moins de 3 chiffres.
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('montant')?.errors?.maxLength"> Renseignez plus de 6 chiffres. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('montant')?.errors?.pattern"> Renseignez que des chiffres. </small>
+          </div>
+        </div>
+        <div class="col-sm-6 form-group">
+          <p class="tt">Numero MTN MOMO</p>
+          <input type="text" formControlName="numeroMomo" placeholder="05xxxxxxxx" class="tt form-control" id="inputMoMo" name="" />
+          <div *ngIf="mainForm.get('numeroMomo')!.invalid && (mainForm.get('numeroMomo')!.dirty || mainForm.get('numeroMomo')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="mainForm.get('numeroMomo')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Ce champ est obligatoire.
+            </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('numeroMomo')?.errors?.pattern">
+              Renseignez un numero de 10 chiffres.
+            </small>
+            <small class="form-text text-danger" *ngIf="mainForm.get('numeroMomo')?.errors?.validValidator">
+              Veuillez commencer par le prefixe 05
+            </small>
+          </div>
+        </div>
       </div>
-      <div class="col-sm-6 form-group">
-        <p class="tt">Numero MTN MOMO</p>
-        <input type="text" placeholder="05xxxxxxxx" class="tt form-control" id="num" name="email" required />
+
+      <div class="mes col-sm-6 form-group">
+        <p class="tt">Un petit message</p>
+        <textarea
+          formControlName="petitMessage"
+          class="form-control"
+          type="textarea"
+          name="message"
+          id="message"
+          maxlength="2000"
+          rows="2"
+        ></textarea>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" [disabled]="mainForm.invalid || isSaving" class="btn btn-primary mt-4 text-yellow">Valider</button>
       </div>
     </div>
-
-    <div class="mes col-sm-6 form-group">
-      <p class="tt">Un petit message</p>
-      <textarea class="form-control" type="textarea" name="message" id="message" maxlength="2000" rows="2"></textarea>
-    </div>
-
-    <div>
-      <input type="checkbox" id="confir" name="confir" checked />
-      <label for="confir">Confirmer</label>
-    </div>
-
-    <div class="text-center">
-      <button type="button" class="btn btn-primary mt-4 text-yellow">Valider</button>
-    </div>
-  </div>
+  </form>
 </div>

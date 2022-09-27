@@ -14,11 +14,17 @@ import { InspirationService } from '../../entities/inspiration/service/inspirati
 import { CategorieCreateurService } from '../../entities/categorie-createur/service/categorie-createur.service';
 import { ReseauxSociauxService } from '../../entities/reseaux-sociaux/service/reseaux-sociaux.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpResponse } from '@angular/common/http';
-import { finalize, map } from 'rxjs/operators';
+import { finalize, map, takeUntil } from 'rxjs/operators';
 import noUiSlider from 'nouislider';
 import Swal from 'sweetalert2';
+import countries from '../../../content/country.json';
+import { Account } from '../../core/auth/account.model';
+import { AccountService } from '../../core/auth/account.service';
+import { DataUtils, FileLoadError } from '../../core/util/data-util.service';
+import { EventManager, EventWithContent } from '../../core/util/event-manager.service';
+import { AlertError } from '../../shared/alert/alert-error.model';
 
 @Component({
   selector: 'jhi-creer-page',
@@ -34,16 +40,25 @@ export class CreerPageComponent implements OnInit, AfterViewInit {
   inspirationsSharedCollection: IInspiration[] = [];
   categorieCreateursSharedCollection: ICategorieCreateur[] = [];
   reseauxSociauxesSharedCollection: IReseauxSociaux[] = [];
+  createursAfricains: ICreateurAfricain[] = [];
 
   editForm: CreateurAfricainFormGroup = this.createurAfricainFormService.createCreateurAfricainFormGroup();
 
+  countryList: { country: string; dial_code: string }[] = countries;
+
+  account: Account | null = null;
+  private readonly destroy$ = new Subject<void>();
+
   constructor(
     protected createurAfricainService: CreateurAfricainService,
+    private accountService: AccountService,
     protected createurAfricainFormService: CreateurAfricainFormService,
     protected inspirationService: InspirationService,
     protected categorieCreateurService: CategorieCreateurService,
     protected reseauxSociauxService: ReseauxSociauxService,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+    protected dataUtils: DataUtils,
+    protected eventManager: EventManager
   ) {}
 
   compareInspiration = (o1: IInspiration | null, o2: IInspiration | null): boolean => this.inspirationService.compareInspiration(o1, o2);
@@ -55,6 +70,7 @@ export class CreerPageComponent implements OnInit, AfterViewInit {
     this.reseauxSociauxService.compareReseauxSociaux(o1, o2);
 
   ngOnInit(): void {
+    this.loadCreateursAfricains();
     this.startMultiplePage();
     this.activatedRoute.data.subscribe(({ createurAfricain }) => {
       this.createurAfricain = createurAfricain;
@@ -64,6 +80,8 @@ export class CreerPageComponent implements OnInit, AfterViewInit {
 
       this.loadRelationshipsOptions();
     });
+
+    this.loadProfileCreateur();
   }
 
   ngAfterViewInit() {
@@ -79,6 +97,14 @@ export class CreerPageComponent implements OnInit, AfterViewInit {
         },
       });
     }
+  }
+
+  erreurSwal(message: string): void {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      html: '<span class="text-danger">' + message + '</span>',
+    });
   }
 
   successSwal() {
@@ -114,7 +140,7 @@ export class CreerPageComponent implements OnInit, AfterViewInit {
       return false;
     };
     let current_step = 0;
-    let stepCount = 4;
+    let stepCount = 5;
     step[current_step].classList.add('d-block');
     if (current_step == 0) {
       prevBtn?.classList.add('d-none');
@@ -185,16 +211,111 @@ export class CreerPageComponent implements OnInit, AfterViewInit {
     window.history.back();
   }
 
+  private loadProfileCreateur(): void {
+    this.accountService
+      .getAuthenticationState()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(account => {
+        this.account = account;
+        if (account !== null) {
+          this.createurAfricainService.findByJhiUserId({ login: this.account?.login }).subscribe(
+            (res: HttpResponse<ICreateurAfricain>) => this.onSucessUser(res.body),
+            (res: HttpResponse<any>) => this.onError()
+          );
+        }
+      });
+  }
+
   save(): void {
     this.isSaving = true;
     let createurAfricain = this.createurAfricainFormService.getCreateurAfricain(this.editForm);
     if (createurAfricain.id !== null) {
       this.subscribeToSaveResponse(this.createurAfricainService.update(createurAfricain));
     } else {
-      createurAfricain.email = 'example@domain.com';
-      createurAfricain.label = 'NEAN';
-      this.subscribeToSaveResponse(this.createurAfricainService.create(createurAfricain));
+      createurAfricain.email = this.account?.email;
+      let messageErreurDoublant = '';
+      this.createursAfricains.forEach(createur => {
+        if (createur?.surnom === createurAfricain?.surnom) {
+          messageErreurDoublant += ' Ce surnom est deja utilisé <br/>';
+        }
+        if (createur?.label === createurAfricain?.label) {
+          messageErreurDoublant += 'Le lien de la page est deja utilisé <br/>';
+        }
+        if (createur?.contact1 === createurAfricain?.contact1) {
+          messageErreurDoublant += 'Ce numéro MoMo est deja utilisé <br/>';
+        }
+        if (createur?.contact2 === createurAfricain?.contact2) {
+          messageErreurDoublant += 'Ce contact personnel est deja utilisé <br/>';
+        }
+      });
+
+      if (messageErreurDoublant === '') {
+        this.subscribeToSaveResponse(this.createurAfricainService.create(createurAfricain));
+      } else {
+        this.erreurSwal(messageErreurDoublant);
+        this.isSaving = false;
+      }
     }
+  }
+
+  protected onError(): void {
+    this.notification('Aucun Createur trouvé', 'warning');
+  }
+
+  protected onSucessUser(data: ICreateurAfricain | null): void {
+    if (data) {
+      this.createurAfricain = data;
+      this.notification('verifications correctes', 'success');
+      this.updateForm(this.createurAfricain);
+    }
+  }
+
+  protected notification(message: string, type: string): void {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: toast => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      },
+    });
+
+    if (type === 'success') {
+      Toast.fire({
+        icon: 'success',
+        title: message,
+      });
+    }
+    if (type === 'warning') {
+      Toast.fire({
+        icon: 'warning',
+        title: message,
+      });
+    }
+  }
+
+  public loadCreateursAfricains(): void {
+    this.activatedRoute.data.subscribe(({ createursAfricains }) => {
+      this.createursAfricains = createursAfricains;
+    });
+  }
+
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
+  }
+
+  openFile(base64String: string, contentType: string | null | undefined): void {
+    this.dataUtils.openFile(base64String, contentType);
+  }
+
+  setFileData(event: Event, field: string, isImage: boolean): void {
+    this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe({
+      error: (err: FileLoadError) =>
+        this.eventManager.broadcast(new EventWithContent<AlertError>('beveHackathonApp.error', { ...err, key: 'error.file.' + err.key })),
+    });
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICreateurAfricain>>): void {

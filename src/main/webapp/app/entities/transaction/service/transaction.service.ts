@@ -102,7 +102,7 @@ export class TransactionService {
   protected convertDateFromClient<T extends ITransaction | NewTransaction | PartialUpdateTransaction>(transaction: T): RestOf<T> {
     return {
       ...transaction,
-      dateTransaction: transaction.dateTransaction?.format(DATE_FORMAT) ?? null,
+      dateTransaction: transaction.dateTransaction?.toString() ?? null,
     };
   }
 

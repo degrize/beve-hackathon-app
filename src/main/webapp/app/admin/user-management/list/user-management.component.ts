@@ -34,6 +34,21 @@ export class UserManagementComponent implements OnInit {
     private modalService: NgbModal
   ) {}
 
+  deleteUser(user: User): void {
+    const modalRef = this.modalService.open(UserManagementDeleteDialogComponent, {
+      windowClass: 'modal-mini',
+      size: 'sm',
+      backdrop: 'static',
+    });
+    modalRef.componentInstance.user = user;
+    // unsubscribe not needed because closed completes on modal close
+    modalRef.closed.subscribe(reason => {
+      if (reason === 'deleted') {
+        this.loadAll();
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => (this.currentAccount = account));
     this.handleNavigation();
@@ -47,8 +62,8 @@ export class UserManagementComponent implements OnInit {
     return item.id!;
   }
 
-  deleteUser(user: User): void {
-    const modalRef = this.modalService.open(UserManagementDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+  deleteUserOld(user: User): void {
+    const modalRef = this.modalService.open(UserManagementDeleteDialogComponent, { size: 'sm', backdrop: 'static' });
     modalRef.componentInstance.user = user;
     // unsubscribe not needed because closed completes on modal close
     modalRef.closed.subscribe(reason => {
