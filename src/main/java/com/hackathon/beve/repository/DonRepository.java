@@ -33,7 +33,7 @@ public interface DonRepository extends JpaRepository<Don, Long> {
     Page<Don> findAllWithToOneRelationships(Pageable pageable);
 
     @Query(
-        "select distinct don from Don don left join fetch don.transaction left join fetch don.createurAfricain left join fetch don.donnateur"
+        "select distinct don from Don don left join fetch don.transaction left join fetch don.createurAfricain left join fetch don.donnateur order by don.id DESC"
     )
     List<Don> findAllWithToOneRelationships();
 

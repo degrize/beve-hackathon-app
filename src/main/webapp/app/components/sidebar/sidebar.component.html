@@ -82,6 +82,12 @@
             Ma Page
           </a>
         </li>
+        <li *ngIf="createurAfricain?.id" class="nav-item">
+          <a routerLinkActive="active" [routerLink]="['/dons-createur']" class="nav-link">
+            <i class="ni ni-pin-3 text-orange"></i>
+            Mes Dons
+          </a>
+        </li>
       </ul>
       <!-- Divider -->
       <hr class="my-3" />
@@ -90,7 +96,7 @@
       <!-- Navigation -->
       <ul class="navbar-nav mb-md-3">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/premium">
+          <a class="nav-link" routerLink="/premium-dashboard">
             <i class="ni ni-palette"></i>
             <span jhiTranslate="global.menu.entities.souscription">Prémium</span>
           </a>

@@ -13,10 +13,11 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
+import { EtatCompteComponent } from '../../etat-compte/etat-compte.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(AdminLayoutRoutes), FormsModule, HttpClientModule, NgbModule, ClipboardModule],
-  declarations: [DashboardComponent, UserProfileComponent, TablesComponent, IconsComponent, MapsComponent],
+  declarations: [DashboardComponent, UserProfileComponent, TablesComponent, IconsComponent, MapsComponent, EtatCompteComponent],
 })
 export class AdminLayoutModule {}

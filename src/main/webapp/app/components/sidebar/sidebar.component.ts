@@ -23,10 +23,7 @@ declare interface RouteInfo {
   icon: string;
   class: string;
 }
-export const ROUTES: RouteInfo[] = [
-  { path: '/don-page', title: 'Mes Dons', icon: 'ni-pin-3 text-orange', class: '' },
-  { path: '/user-profile', title: 'profile créateur', icon: 'ni-single-02 text-yellow', class: '' },
-];
+export const ROUTES: RouteInfo[] = [{ path: '/user-profile', title: 'profile créateur', icon: 'ni-single-02 text-yellow', class: '' }];
 
 @Component({
   selector: 'app-sidebar',

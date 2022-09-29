@@ -5,6 +5,7 @@ import com.hackathon.beve.repository.DonRepository;
 import com.hackathon.beve.service.DonService;
 import com.hackathon.beve.service.dto.DonDTO;
 import com.hackathon.beve.service.mapper.DonMapper;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,5 +85,14 @@ public class DonServiceImpl implements DonService {
     public void delete(Long id) {
         log.debug("Request to delete Don : {}", id);
         donRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Don> findAllNoPagebleSearch() {
+        log.debug("Request to get list of Dons Search");
+        List<Don> annonceList = donRepository.findAllWithEagerRelationships();
+
+        return annonceList;
     }
 }

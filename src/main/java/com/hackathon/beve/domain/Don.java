@@ -29,6 +29,9 @@ public class Don implements Serializable {
     @Column(name = "date_don")
     private LocalDate dateDon;
 
+    @Column(name = "montant")
+    private Double montant;
+
     @ManyToOne
     private Transaction transaction;
 
@@ -78,6 +81,19 @@ public class Don implements Serializable {
 
     public void setDateDon(LocalDate dateDon) {
         this.dateDon = dateDon;
+    }
+
+    public Double getMontant() {
+        return montant;
+    }
+
+    public Don montant(Double montant) {
+        this.setMontant(montant);
+        return this;
+    }
+
+    public void setMontant(Double montant) {
+        this.montant = montant;
     }
 
     public Transaction getTransaction() {
@@ -145,6 +161,7 @@ public class Don implements Serializable {
             "id=" + getId() +
             ", description='" + getDescription() + "'" +
             ", dateDon='" + getDateDon() + "'" +
+            ", montant='" + getMontant() + "'" +
             "}";
     }
 }

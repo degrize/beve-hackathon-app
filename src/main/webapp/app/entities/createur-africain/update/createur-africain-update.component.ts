@@ -15,6 +15,9 @@ import { IReseauxSociaux } from 'app/entities/reseaux-sociaux/reseaux-sociaux.mo
 import { ReseauxSociauxService } from 'app/entities/reseaux-sociaux/service/reseaux-sociaux.service';
 import { Sexe } from 'app/entities/enumerations/sexe.model';
 import { SituationMatrimoniale } from 'app/entities/enumerations/situation-matrimoniale.model';
+import { DataUtils, FileLoadError } from '../../../core/util/data-util.service';
+import { EventManager, EventWithContent } from '../../../core/util/event-manager.service';
+import { AlertError } from '../../../shared/alert/alert-error.model';
 
 @Component({
   selector: 'jhi-createur-africain-update',
@@ -38,7 +41,9 @@ export class CreateurAfricainUpdateComponent implements OnInit {
     protected inspirationService: InspirationService,
     protected categorieCreateurService: CategorieCreateurService,
     protected reseauxSociauxService: ReseauxSociauxService,
-    protected activatedRoute: ActivatedRoute
+    protected activatedRoute: ActivatedRoute,
+    protected dataUtils: DataUtils,
+    protected eventManager: EventManager
   ) {}
 
   compareInspiration = (o1: IInspiration | null, o2: IInspiration | null): boolean => this.inspirationService.compareInspiration(o1, o2);
@@ -74,6 +79,21 @@ export class CreateurAfricainUpdateComponent implements OnInit {
       createurAfricain.label = 'NEAN';
       this.subscribeToSaveResponse(this.createurAfricainService.create(createurAfricain));
     }
+  }
+
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
+  }
+
+  openFile(base64String: string, contentType: string | null | undefined): void {
+    this.dataUtils.openFile(base64String, contentType);
+  }
+
+  setFileData(event: Event, field: string, isImage: boolean): void {
+    this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe({
+      error: (err: FileLoadError) =>
+        this.eventManager.broadcast(new EventWithContent<AlertError>('beveHackathonApp.error', { ...err, key: 'error.file.' + err.key })),
+    });
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICreateurAfricain>>): void {

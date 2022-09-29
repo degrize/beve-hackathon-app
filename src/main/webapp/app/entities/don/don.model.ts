@@ -6,10 +6,11 @@ import { IDonnateur } from 'app/entities/donnateur/donnateur.model';
 export interface IDon {
   id: number;
   description?: string | null;
-  dateDon?: dayjs.Dayjs | null;
+  dateDon?: dayjs.Dayjs | null | string;
   transaction?: Pick<ITransaction, 'id' | 'numeroMtn'> | null;
   createurAfricain?: Pick<ICreateurAfricain, 'id' | 'label'> | null;
   donnateur?: Pick<IDonnateur, 'id' | 'prenom'> | null;
+  montant?: number | null;
 }
 
 export type NewDon = Omit<IDon, 'id'> & { id: null };

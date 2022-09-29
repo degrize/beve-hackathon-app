@@ -1,7 +1,9 @@
 package com.hackathon.beve.web.rest;
 
+import com.hackathon.beve.domain.Don;
 import com.hackathon.beve.repository.DonRepository;
 import com.hackathon.beve.service.DonService;
+import com.hackathon.beve.service.MailService;
 import com.hackathon.beve.service.dto.DonDTO;
 import com.hackathon.beve.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -11,6 +13,7 @@ import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,6 +42,9 @@ public class DonResource {
 
     private final DonService donService;
 
+    @Autowired
+    private MailService mailService;
+
     private final DonRepository donRepository;
 
     public DonResource(DonService donService, DonRepository donRepository) {
@@ -60,6 +66,8 @@ public class DonResource {
             throw new BadRequestAlertException("A new don cannot already have an ID", ENTITY_NAME, "idexists");
         }
         DonDTO result = donService.save(donDTO);
+
+        mailService.sendDonNotificationEmail(donDTO);
         return ResponseEntity
             .created(new URI("/api/dons/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -182,5 +190,12 @@ public class DonResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/dons/search-list")
+    public ResponseEntity<List<Don>> getAllDonsSearchNoPageble() {
+        log.debug("REST request to get list of search Dons");
+        List<Don> donSearchList = donService.findAllNoPagebleSearch();
+        return ResponseEntity.ok().body(donSearchList);
     }
 }

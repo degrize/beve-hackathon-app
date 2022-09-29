@@ -6,7 +6,7 @@ import { TransactionService } from '../entities/transaction/service/transaction.
 import { TransactionFormGroup, TransactionFormService } from '../entities/transaction/update/transaction-form.service';
 import { Observable, Subject } from 'rxjs';
 import { numeroMoMoValidator } from '../shared/validators/valid.validator';
-import { ITransaction } from '../entities/transaction/transaction.model';
+import { ITransaction, NewTransaction } from '../entities/transaction/transaction.model';
 import { Devise } from '../entities/enumerations/devise.model';
 import { AccountService } from '../core/auth/account.service';
 import { finalize, takeUntil } from 'rxjs/operators';
@@ -15,6 +15,10 @@ import { CreateurAfricainService } from '../entities/createur-africain/service/c
 import { HttpResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import dayjs from 'dayjs/esm';
+import { DonService } from '../entities/don/service/don.service';
+import { DonFormGroup, DonFormService } from '../entities/don/update/don-form.service';
+import { DonnateurService } from '../entities/donnateur/service/donnateur.service';
+import { IDon } from '../entities/don/don.model';
 
 @Component({
   selector: 'jhi-dons',
@@ -29,6 +33,7 @@ export class DonsComponent implements OnInit {
   montantInput = 0;
   isSaving = false;
   transaction: ITransaction | null = null;
+  transactionNew: NewTransaction | undefined;
   deviseValues = Object.keys(Devise);
   createurAfricain: ICreateurAfricain | null = null;
 
@@ -38,6 +43,8 @@ export class DonsComponent implements OnInit {
   petitMessage!: FormControl;
 
   tarif = 200;
+  don: IDon | null = null;
+  editFormDon: DonFormGroup = this.donFormService.createDonFormGroup();
 
   editForm: TransactionFormGroup = this.transactionFormService.createTransactionFormGroup();
 
@@ -50,7 +57,10 @@ export class DonsComponent implements OnInit {
     private createurAfricainService: CreateurAfricainService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private accountService: AccountService
+    private accountService: AccountService,
+    protected donService: DonService,
+    protected donFormService: DonFormService,
+    protected donnateurService: DonnateurService
   ) {}
 
   ngOnInit(): void {
@@ -85,10 +95,10 @@ export class DonsComponent implements OnInit {
     }
     transaction.numeroMtn = this.numeroMTN;
 
-    let inputPrecision = document.getElementsByTagName('textarea');
-    for (let i = 0; i < inputPrecision.length; i++) {
-      if (inputPrecision[i].id === 'inputPrecision') {
-        this.petitMessageInput = inputPrecision[i].value;
+    let inputPetitMessage = document.getElementsByTagName('textarea');
+    for (let i = 0; i < inputPetitMessage.length; i++) {
+      if (inputPetitMessage[i].id === 'inputPetitMessage') {
+        this.petitMessageInput = inputPetitMessage[i].value;
       }
     }
     transaction.petitMessage = this.petitMessageInput;
@@ -103,9 +113,26 @@ export class DonsComponent implements OnInit {
     if (transaction.id !== null) {
       //
     } else {
-      console.log(transaction.numeroMtn);
+      this.transactionNew = transaction;
       transaction.dateTransaction = dayjs().format('YYYY-MM-DD');
       this.subscribeToSaveResponse(this.transactionService.create(transaction));
+    }
+  }
+
+  saveDon(transaction: ITransaction | null): void {
+    if (transaction) {
+      this.isSaving = true;
+      const don = this.donFormService.getDon(this.editFormDon);
+      don.dateDon = dayjs().format('YYYY-MM-DD');
+      don.createurAfricain = this.createurAfricain;
+      don.montant = transaction?.montant;
+      don.transaction = transaction;
+      don.description = transaction?.numeroMtn;
+      if (don.id !== null) {
+        this.subscribeToSaveResponseDon(this.donService.update(don));
+      } else {
+        this.subscribeToSaveResponseDon(this.donService.create(don));
+      }
     }
   }
 
@@ -139,8 +166,11 @@ export class DonsComponent implements OnInit {
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ITransaction>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
-      next: () => {
-        this.onSaveSuccessTransaction();
+      next: res => {
+        if (this.transactionNew) {
+          this.saveDon(res.body);
+          this.onSaveSuccessTransaction();
+        }
       },
       error: () => this.onSaveError(),
     });
@@ -234,5 +264,24 @@ export class DonsComponent implements OnInit {
       imageHeight: 200,
       imageAlt: 'transaction vers le createur',
     });
+  }
+
+  protected subscribeToSaveResponseDon(result: Observable<HttpResponse<IDon>>): void {
+    result.pipe(finalize(() => this.onSaveFinalizeDon())).subscribe({
+      next: () => this.onSaveSuccessDon(),
+      error: () => this.onSaveErrorDon(),
+    });
+  }
+
+  protected onSaveSuccessDon(): void {
+    //
+  }
+
+  protected onSaveErrorDon(): void {
+    // Api for inheritance.
+  }
+
+  protected onSaveFinalizeDon(): void {
+    this.isSaving = false;
   }
 }

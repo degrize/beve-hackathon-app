@@ -55,7 +55,7 @@
             <a [routerLink]="['/don', don.id, 'view']">{{ don.id }}</a>
           </td>
           <td>{{ don.description }}</td>
-          <td>{{ don.dateDon | formatMediumDate }}</td>
+          <td>{{ don.dateDon }}</td>
           <td>
             <div *ngIf="don.transaction">
               <a [routerLink]="['/transaction', don.transaction.id, 'view']">{{ don.transaction?.numeroMtn }}</a>

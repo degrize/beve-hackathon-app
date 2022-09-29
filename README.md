@@ -261,3 +261,30 @@ alter table "public".createur_africain
 alter table "public".createur_africain
 add etat_compte varchar(255)
 ```
+
+Add colonne Montant to Don
+
+```
+alter table "public".don
+add montant double precision;
+```
+
+Pour la table aide
+
+```
+CREATE TABLE aide
+(
+    id bigint NOT NULL,
+    nom character varying(255) NOT NULL,
+    message character varying(255),
+    email character varying(255),
+    CONSTRAINT aide_pkey PRIMARY KEY (id)
+)
+WITH (
+    OIDS=FALSE
+);
+ALTER TABLE aide
+OWNER TO postgres;
+COMMENT ON TABLE aide
+IS E'Don entity.\\n@author BEVE.';
+```

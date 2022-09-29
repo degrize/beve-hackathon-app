@@ -1,6 +1,8 @@
 package com.hackathon.beve.service;
 
+import com.hackathon.beve.domain.Don;
 import com.hackathon.beve.service.dto.DonDTO;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -63,4 +65,6 @@ public interface DonService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    List<Don> findAllNoPagebleSearch();
 }

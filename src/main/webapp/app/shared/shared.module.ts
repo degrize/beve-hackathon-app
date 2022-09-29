@@ -21,9 +21,10 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { UsernamePipe } from './pipes/username.pipe';
 import { ShortenPipe } from './pipes/shorten.pipe';
+import { MaterialModule } from './material.module';
 
 @NgModule({
-  imports: [SharedLibsModule, SwiperModule, CarouselModule],
+  imports: [SharedLibsModule, MaterialModule, SwiperModule, CarouselModule],
   declarations: [
     NextDirective,
     PrevDirective,
@@ -62,6 +63,7 @@ import { ShortenPipe } from './pipes/shorten.pipe';
     TimeAgoPipe,
     ShortenPipe,
     UsernamePipe,
+    MaterialModule,
   ],
 })
 export class SharedModule {}

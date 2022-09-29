@@ -1,0 +1,52 @@
+<mat-card>
+  <div class="wrapper d-flex justify-content-center align-items-center flex-column">
+    <div class="title">Trouvez tous les dons <span>Que vous cherchez</span></div>
+    <form action="#" class="form">
+      <div class="email-field shadow">
+        <input
+          [formControl]="searchCtrl"
+          class="search form-control form-control-sm px-3"
+          placeholder="Trouver un don"
+          aria-controls="datatable"
+        />
+        <ng-select [formControl]="searchTypeCtrl" class="form-control-lg searchOption" id="field_searchOption">
+          <ng-option *ngFor="let option of searchTypeOptions" [value]="option.value"> {{ option.label }} </ng-option>
+        </ng-select>
+      </div>
+    </form>
+
+    <div class="form"></div>
+    <div class="col-xl-11">
+      <div *ngIf="loading$ | async" class="spinner-border text-eva" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div class="content-list d-flex justify-content-between flex-wrap">
+        <mat-nav-list *ngIf="dons$ | async as dons">
+          <ng-container *ngFor="let don of dons">
+            <div
+              *ngIf="don?.createurAfricain?.id === createurAfricain?.id"
+              id="card-component"
+              class="tab-pane tab-example-result fade show active text-left align-self-start mb-2"
+              role="tabpanel"
+              aria-labelledby="card-component-tab"
+            >
+              <div class="card card-frame py-3">
+                <div class="card-body">
+                  <a mat-list-item>
+                    <img [src]="beveLogo" matListAvatar />
+                    <h3 matLine>
+                      {{ don?.description | uppercase }}
+                      <span class="text-heure">{{ don?.dateDon | timeAgo }}</span>
+                      <p>Date : {{ don.dateDon }}</p>
+                    </h3>
+                    <p class="text-heure">{{ don?.montant }} FCFA</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </mat-nav-list>
+      </div>
+    </div>
+  </div>
+</mat-card>

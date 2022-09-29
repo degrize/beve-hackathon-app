@@ -90,6 +90,8 @@ public class SecurityConfiguration {
             .antMatchers("/api/createur-africains/page-lien/**").permitAll()
             .antMatchers("/api/createur-africains/account").permitAll()
             .antMatchers("/api/transactions").permitAll()
+            .antMatchers("/api/dons/**").permitAll()
+            .antMatchers("/api/dons/search-list").permitAll()
             .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/health/**").permitAll()

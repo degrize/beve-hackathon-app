@@ -1,6 +1,9 @@
 package com.hackathon.beve.service;
 
+import com.hackathon.beve.domain.Don;
 import com.hackathon.beve.domain.User;
+import com.hackathon.beve.service.dto.AideDTO;
+import com.hackathon.beve.service.dto.DonDTO;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import javax.mail.MessagingException;
@@ -28,6 +31,8 @@ public class MailService {
     private final Logger log = LoggerFactory.getLogger(MailService.class);
 
     private static final String USER = "user";
+    private static final String DON = "don";
+    private static final String AIDE = "aide";
 
     private static final String BASE_URL = "baseUrl";
 
@@ -78,6 +83,21 @@ public class MailService {
     }
 
     @Async
+    public void sendAideEmailFromTemplate(AideDTO aide, String templateName, String titleKey) {
+        if (aide.getEmail() == null) {
+            log.debug("Email doesn't exist for user '{}'", aide.getNom());
+            return;
+        }
+        Locale locale = Locale.forLanguageTag("fr");
+        Context context = new Context(locale);
+        context.setVariable(AIDE, aide);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail("kechiedou.meda18@inphb.ci", subject, content, false, true);
+    }
+
+    @Async
     public void sendEmailFromTemplate(User user, String templateName, String titleKey) {
         if (user.getEmail() == null) {
             log.debug("Email doesn't exist for user '{}'", user.getLogin());
@@ -90,6 +110,21 @@ public class MailService {
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
         sendEmail(user.getEmail(), subject, content, false, true);
+    }
+
+    @Async
+    public void sendEmailFromTemplate(DonDTO don, String templateName, String titleKey) {
+        if (don.getCreateurAfricain().getEmail() == null) {
+            log.debug("Email doesn't exist for user '{}'", don.getCreateurAfricain().getNomDeFamille());
+            return;
+        }
+        Locale locale = Locale.forLanguageTag("fr");
+        Context context = new Context(locale);
+        context.setVariable(DON, don);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail(don.getCreateurAfricain().getEmail(), subject, content, false, true);
     }
 
     @Async
@@ -108,5 +143,21 @@ public class MailService {
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/passwordResetEmail", "email.reset.title");
+    }
+
+    @Async
+    public void sendDonNotificationEmail(DonDTO don) {
+        log.debug(
+            "Sending notification Don email to createur '{}' email : '{}'",
+            don.getCreateurAfricain().getNomDeFamille(),
+            don.getCreateurAfricain().getEmail()
+        );
+        sendEmailFromTemplate(don, "mail/donNotificationEmail", "email.donnotification.title");
+    }
+
+    @Async
+    public void sendAideEmail(AideDTO aide) {
+        log.debug("Sending aide email from '{}'", aide.getEmail());
+        sendAideEmailFromTemplate(aide, "mail/aideEmail", "email.aide.title");
     }
 }

@@ -23,6 +23,8 @@ public class DonDTO implements Serializable {
 
     private DonnateurDTO donnateur;
 
+    private Double montant;
+
     public Long getId() {
         return id;
     }
@@ -71,6 +73,14 @@ public class DonDTO implements Serializable {
         this.donnateur = donnateur;
     }
 
+    public Double getMontant() {
+        return montant;
+    }
+
+    public void setMontant(Double montant) {
+        this.montant = montant;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -102,6 +112,7 @@ public class DonDTO implements Serializable {
             ", transaction=" + getTransaction() +
             ", createurAfricain=" + getCreateurAfricain() +
             ", donnateur=" + getDonnateur() +
+            ", montant=" + getMontant() +
             "}";
     }
 }

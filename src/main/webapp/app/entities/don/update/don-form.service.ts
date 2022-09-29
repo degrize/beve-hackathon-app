@@ -23,6 +23,7 @@ type DonFormGroupContent = {
   transaction: FormControl<IDon['transaction']>;
   createurAfricain: FormControl<IDon['createurAfricain']>;
   donnateur: FormControl<IDon['donnateur']>;
+  montant: FormControl<IDon['montant']>;
 };
 
 export type DonFormGroup = FormGroup<DonFormGroupContent>;
@@ -47,6 +48,7 @@ export class DonFormService {
       transaction: new FormControl(donRawValue.transaction),
       createurAfricain: new FormControl(donRawValue.createurAfricain),
       donnateur: new FormControl(donRawValue.donnateur),
+      montant: new FormControl(donRawValue.montant),
     });
   }
 

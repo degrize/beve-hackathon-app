@@ -12,9 +12,7 @@ import { IDon, NewDon } from '../don.model';
 
 export type PartialUpdateDon = Partial<IDon> & Pick<IDon, 'id'>;
 
-type RestOf<T extends IDon | NewDon> = Omit<T, 'dateDon'> & {
-  dateDon?: string | null;
-};
+type RestOf<T extends IDon | NewDon> = Omit<T, 'dateDon'> & {};
 
 export type RestDon = RestOf<IDon>;
 
@@ -95,14 +93,12 @@ export class DonService {
   protected convertDateFromClient<T extends IDon | NewDon | PartialUpdateDon>(don: T): RestOf<T> {
     return {
       ...don,
-      dateDon: don.dateDon?.format(DATE_FORMAT) ?? null,
     };
   }
 
   protected convertDateFromServer(restDon: RestDon): IDon {
     return {
       ...restDon,
-      dateDon: restDon.dateDon ? dayjs(restDon.dateDon) : undefined,
     };
   }
 
