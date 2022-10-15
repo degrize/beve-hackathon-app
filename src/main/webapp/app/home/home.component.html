@@ -43,13 +43,16 @@
         <button type="button" class="btn btn-info mb-2" data-filter="all">Tout</button>
       </div>
 
-      <div class="container d-flex justify-content-center align-items-center flex-wrap p-5 bg-yellow rounded shadow">
+      <div
+        class="container d-flex justify-content-center align-items-center flex-wrap p-5 rounded shadow"
+        style="background: linear-gradient(104.52deg, #d0b739 -11.68%, #d7d050 113.61%)"
+      >
         <ng-container *ngFor="let createurAfricain of createurAfricains; let categorieClass">
           <ng-container *ngFor="let categorieCreateur of createurAfricain?.categorieCreateurs">
             <div [class]="'card mix rounded blue filter-' + categorieCreateur.id">
               <a [routerLink]="'/createur/' + createurAfricain.label">
                 <img class="card-img-top" src="../../../content/assets/img/beve/andre-hunter.jpg" alt="Card image cap" />
-                <div class="card-body">
+                <div class="card-body shadow-sm">
                   <h5 class="card-title text-center">{{ createurAfricain.surnom }} / {{ categorieCreateur.categorie }}</h5>
                   <p class="card-text">
                     <small class="text-muted">

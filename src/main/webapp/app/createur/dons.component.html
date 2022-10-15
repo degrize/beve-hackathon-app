@@ -1,11 +1,13 @@
 <div class="createur flex-column d-flex justify-content-center m-3">
   <form [formGroup]="mainForm" (ngSubmit)="save()">
-    <div class="card p-4 col-xl-6 shadow">
+    <!--
+    <div class="card p-4 col-xl-6 shadow"
+         style="background: linear-gradient(104.52deg, #d0b739 -11.68%, #d7d050 113.61%);"
+    >
       <img
         [src]="'data:' + createurAfricain?.photoContentType + ';base64,' + createurAfricain?.photo"
         [alt]="createurAfricain?.surnom"
         class="rounded-circle"
-        alt="Hollywood Sign on The Hill"
       />
 
       <p class="titre text-black">SOUTIEN A {{ createurAfricain?.surnom }}</p>
@@ -79,6 +81,116 @@
 
       <div class="text-center">
         <button type="submit" [disabled]="mainForm.invalid || isSaving" class="btn btn-primary mt-4 text-yellow">Valider</button>
+      </div>
+    </div>
+    -->
+
+    <div class="container" style="background: linear-gradient(104.52deg, #d0b739 -11.68%, #d7d050 113.61%)">
+      <h2>SOUTIEN A {{ createurAfricain?.surnom }}</h2>
+      <div class="wrapper">
+        <div class="editor-panel">
+          <img src="../../../content/images/mtn.png" class="mtn" />
+          <div class="filter">
+            <div class="options flex-wrap">
+              <div class="mes form-group">
+                <p class="tt">Montant</p>
+                <input
+                  formControlName="montant"
+                  type="text"
+                  class="form-control pl-3"
+                  id="inputMontant"
+                  name="inputMontant"
+                  placeholder="renseignez le montant"
+                />
+                <div *ngIf="mainForm.get('montant')!.invalid && (mainForm.get('montant')!.dirty || mainForm.get('montant')!.touched)">
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="mainForm.get('montant')?.errors?.required"
+                    jhiTranslate="entity.validation.required"
+                  >
+                    Ce champ est obligatoire.
+                  </small>
+                  <small class="form-text text-danger" *ngIf="editForm.get('montant')?.errors?.minLength">
+                    Renseignez moins de 3 chiffres.
+                  </small>
+                  <small class="form-text text-danger" *ngIf="editForm.get('montant')?.errors?.maxLength">
+                    Renseignez plus de 6 chiffres.
+                  </small>
+                  <small class="form-text text-danger" *ngIf="editForm.get('montant')?.errors?.pattern">
+                    Renseignez que des chiffres.
+                  </small>
+                </div>
+              </div>
+              <div class="mes form-group">
+                <p class="tt">Numero MTN MOMO</p>
+                <input
+                  type="text"
+                  formControlName="numeroMomo"
+                  placeholder="05xxxxxxxx"
+                  class="tt form-control pl-3"
+                  id="inputMoMo"
+                  name=""
+                />
+                <div
+                  *ngIf="mainForm.get('numeroMomo')!.invalid && (mainForm.get('numeroMomo')!.dirty || mainForm.get('numeroMomo')!.touched)"
+                >
+                  <small
+                    class="form-text text-danger"
+                    *ngIf="mainForm.get('numeroMomo')?.errors?.required"
+                    jhiTranslate="entity.validation.required"
+                  >
+                    Ce champ est obligatoire.
+                  </small>
+                  <small class="form-text text-danger" *ngIf="editForm.get('numeroMomo')?.errors?.pattern">
+                    Renseignez un numero de 10 chiffres.
+                  </small>
+                  <small class="form-text text-danger" *ngIf="mainForm.get('numeroMomo')?.errors?.validValidator">
+                    Veuillez commencer par le prefixe 05
+                  </small>
+                </div>
+              </div>
+              <div class="mes form-group">
+                <p class="tt">Un petit message</p>
+                <textarea
+                  formControlName="petitMessage"
+                  class="form-control p-3"
+                  type="textarea"
+                  name="message"
+                  id="message"
+                  maxlength="2000"
+                  rows="2"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="preview-img flex flex-column">
+          <img
+            [src]="'data:' + createurAfricain?.photoContentType + ';base64,' + createurAfricain?.photo"
+            [alt]="createurAfricain?.surnom"
+            alt="preview-img"
+            class="shadow"
+          />
+
+          <p class="titre text-black">
+            Nom à l'état Civil {{ createurAfricain?.prenom }} {{ (createurAfricain?.nomDeFamille + '').toUpperCase() }}
+          </p>
+
+          <p class="texte text-black text-center">
+            Achat de bidon d'eau pour <span class="titre text-underline"> {{ createurAfricain?.surnom }} </span> afin de le soutenir.
+          </p>
+
+          <ul class="texte text-black-50 mt-4 ml-6 text-sm">
+            <li>Les montants de l'ordre de million ne sont pas pris en compte par BEVE</li>
+            <li>Le numéro de transaction doit être un numéro MTM /MoMo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="reset-filter px-5 py-2" (click)="previousState()">
+          <span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+        <button type="submit" [disabled]="mainForm.invalid || isSaving" class="save-img btn mt-4 text-yellow px-5 py-2">Valider</button>
       </div>
     </div>
   </form>
