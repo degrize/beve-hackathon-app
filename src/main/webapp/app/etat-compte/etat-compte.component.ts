@@ -9,6 +9,7 @@ import { EtatCompte } from '../entities/enumerations/etat-compte.model';
 import Swal from 'sweetalert2';
 import { ICreateurAfricain } from '../entities/createur-africain/createur-africain.model';
 import { CreateurAfricainService } from '../entities/createur-africain/service/createur-africain.service';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'jhi-etat-compte',
@@ -23,7 +24,7 @@ export class EtatCompteComponent implements OnInit {
     text2: '-',
     text3: '-',
     text4: '-',
-    title: 'For beginner use',
+    title: 'Pour les utilsateur Basic',
     price: '0',
   };
   ComptePremium = {
@@ -42,7 +43,12 @@ export class EtatCompteComponent implements OnInit {
 
   private readonly destroy$ = new Subject<void>();
 
-  constructor(private accountService: AccountService, private createurAfricainService: CreateurAfricainService, private router: Router) {}
+  constructor(
+    private accountService: AccountService,
+    private createurAfricainService: CreateurAfricainService,
+    private router: Router,
+    private primengConfig: PrimeNGConfig
+  ) {}
 
   ngOnInit(): void {
     this.accountService
@@ -57,6 +63,8 @@ export class EtatCompteComponent implements OnInit {
           );
         }
       });
+
+    this.primengConfig.ripple = true;
   }
 
   ngOnDestroy(): void {
@@ -93,7 +101,7 @@ export class EtatCompteComponent implements OnInit {
 
   startPayementForm(): void {
     Swal.fire({
-      title: 'Renseignez le mot clé : eva' + this.getRandomIntInclusive(100, 999),
+      title: 'Renseignez le mot clé : Beve' + this.getRandomIntInclusive(100, 999),
       input: 'text',
       inputAttributes: {
         autocapitalize: 'off',
@@ -126,6 +134,11 @@ export class EtatCompteComponent implements OnInit {
 
   switch(value: boolean): void {
     this.premium = value;
+    if (this.premium) {
+      this.CompteNormal = this.ComptePremium;
+    } else {
+      this.ComptePremium = this.ComptePremium;
+    }
   }
 
   getRandomIntInclusive(min: number, max: number) {
@@ -169,6 +182,7 @@ export class EtatCompteComponent implements OnInit {
 
       this.createurAfricain = data;
       console.log('DATA USER MANDATAIRE DELEGATEUR');
+      console.log(this.createurAfricain);
     } else {
       this.premium = false;
     }

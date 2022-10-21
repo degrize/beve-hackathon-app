@@ -6,13 +6,6 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: linear-gradient(#d5a3ff 0%, #77a5f8 100%);
-}
 .wrapper {
   width: 400px;
   background: #fff;
@@ -52,7 +45,6 @@ header .slider {
   position: absolute;
   height: 85%;
   border-radius: inherit;
-  background: linear-gradient(145deg, #6dbe9b 0%, $color-eva 100%);
   transition: all 0.3s ease;
 }
 #tab-1:checked ~ header .slider {
@@ -120,7 +112,7 @@ header .slider {
   font-size: 20px;
 }
 .price-details .price::after {
-  content: 'Mille FCFA /mon';
+  content: 'Mille FCFA /moi';
   right: -113px;
   bottom: 17px;
   font-size: 13px;
@@ -138,7 +130,6 @@ header .slider {
   align-items: center;
 }
 .features li i {
-  background: linear-gradient(145deg, #6dbe9b 0%, $color-eva 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -156,7 +147,6 @@ header .slider {
   color: #fff;
   cursor: pointer;
   margin-top: 20px;
-  background: linear-gradient(145deg, #6dbe9b 0%, $color-eva 100%);
   transition: transform 0.3s ease;
 }
 .wrapper button:hover {

@@ -75,7 +75,7 @@
     "packaging": "jar"
   },
   "dependencies": {
-    "@angular/animations": "13.3.1",
+    "@angular/animations": "^13.3.1",
     "@angular/cdk": "^13.3.1",
     "@angular/common": "14.1.0",
     "@angular/compiler": "14.1.0",
@@ -113,6 +113,9 @@
     "ngx-toastr": "14.2.2",
     "ngx-webstorage": "10.0.1",
     "nouislider": "15.5.1",
+    "primeflex": "^3.2.1",
+    "primeicons": "^6.0.1",
+    "primeng": "^14.1.2",
     "rxjs": "7.5.6",
     "sweetalert2": "^11.4.29",
     "swiper": "^8.3.2",

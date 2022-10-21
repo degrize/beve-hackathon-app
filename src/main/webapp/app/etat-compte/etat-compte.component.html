@@ -1,3 +1,4 @@
+<!--
 <div class="d-flex justify-content-center" [ngSwitch]="premium !== false">
   <div class="wrapper">
     <ng-container *ngSwitchCase="true">
@@ -5,13 +6,13 @@
       <input (click)="switch(true)" type="radio" name="slider" id="tab-2" checked />
     </ng-container>
     <ng-container *ngSwitchCase="false">
-      <input (click)="switch(false)" type="radio" name="slider" id="tab-1" checked />
-      <input (click)="switch(true)" type="radio" name="slider" id="tab-2" />
+      <input (click)="switch(false)" type="radio" name="slider2" id="tab-1" checked />
+      <input (click)="switch(true)" type="radio" name="slider2" id="tab-2" />
     </ng-container>
     <header>
       <label for="tab-1" class="tab-1">Normal</label>
       <label for="tab-2" class="tab-2">Premium</label>
-      <div class="slider"></div>
+      <div class="slider" style="background: linear-gradient(145deg, #b29a24 0%, #FFC107FF 100%);"></div>
     </header>
     <div class="card-area">
       <div class="cards">
@@ -57,6 +58,127 @@
         </div>
       </div>
     </div>
-    <button (click)="startPayementForm()" class="btn btn primary">Choisir le plan</button>
+    <button (click)="startPayementForm()" class="btn btn primary"
+      style="background: linear-gradient(145deg, #b29a24 0%, #FFC107FF 100%);">
+      Choisir le plan</button>
+  </div>
+</div>
+-->
+
+<div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
+  <div class="text-900 font-bold text-6xl mb-4 text-center">Plans de souscription</div>
+  <div class="text-700 text-xl mb-6 text-center line-height-3">
+    Faites votre choix et devenez membre premium pour beneficier de nombreux avantages
+  </div>
+
+  <div class="grid">
+    <div class="lg:col-4">
+      <div class="p-3 h-full">
+        <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
+          <div class="text-900 font-medium text-xl mb-2">Basic</div>
+          <div class="text-600">Plan description</div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <div class="flex align-items-center">
+            <span class="font-bold text-2xl text-900">900</span>
+            <span class="ml-2 font-medium text-600">par mois</span>
+          </div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <ul class="list-none p-0 m-0 flex-grow-1">
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Arcu vitae elementum</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Dui faucibus in ornare</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Morbi tincidunt augue</span>
+            </li>
+          </ul>
+          <hr class="mb-3 mx-0 border-top-1 border-none surface-border mt-auto" />
+          <button pButton pRipple label="Buy Now" class="p-3 w-full mt-auto"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="lg:col-4">
+      <div class="p-3 h-full">
+        <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px">
+          <div class="text-900 font-medium text-xl mb-2">Premium</div>
+          <div class="text-600">Plan description</div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <div class="flex align-items-center">
+            <span class="font-bold text-2xl text-900">$29</span>
+            <span class="ml-2 font-medium text-600">per month</span>
+          </div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <ul class="list-none p-0 m-0 flex-grow-1">
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Arcu vitae elementum</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Dui faucibus in ornare</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Morbi tincidunt augue</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Duis ultricies lacus sed</span>
+            </li>
+          </ul>
+          <hr class="mb-3 mx-0 border-top-1 border-none surface-border" />
+          <button pButton pRipple label="Buy Now" class="p-3 w-full"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 lg:col-4">
+      <div class="p-3 h-full">
+        <div class="shadow-2 p-3 flex flex-column surface-card" style="border-radius: 6px">
+          <div class="text-900 font-medium text-xl mb-2">Enterprise</div>
+          <div class="text-600">Plan description</div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <div class="flex align-items-center">
+            <span class="font-bold text-2xl text-900">$49</span>
+            <span class="ml-2 font-medium text-600">per month</span>
+          </div>
+          <hr class="my-3 mx-0 border-top-1 border-none surface-border" />
+          <ul class="list-none p-0 m-0 flex-grow-1">
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Arcu vitae elementum</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Dui faucibus in ornare</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Morbi tincidunt augue</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Duis ultricies lacus sed</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Imperdiet proin</span>
+            </li>
+            <li class="flex align-items-center mb-3">
+              <i class="pi pi-check-circle text-green-500 mr-2"></i>
+              <span class="text-900">Nisi scelerisque</span>
+            </li>
+          </ul>
+          <hr class="mb-3 mx-0 border-top-1 border-none surface-border" />
+          <button pButton pRipple label="Buy Now" class="p-3 w-full p-button-outlined"></button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

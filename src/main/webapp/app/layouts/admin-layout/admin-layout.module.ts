@@ -18,6 +18,6 @@ import { EtatCompteComponent } from '../../etat-compte/etat-compte.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(AdminLayoutRoutes), FormsModule, HttpClientModule, NgbModule, ClipboardModule],
-  declarations: [DashboardComponent, UserProfileComponent, TablesComponent, IconsComponent, MapsComponent, EtatCompteComponent],
+  declarations: [DashboardComponent, UserProfileComponent, TablesComponent, IconsComponent, MapsComponent],
 })
 export class AdminLayoutModule {}

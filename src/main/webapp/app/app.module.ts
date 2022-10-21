@@ -28,7 +28,10 @@ import { ErrorComponent } from './layouts/error/error.component';
 import { ComponentsModule } from './components/components.module';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { EtatCompteComponent } from './etat-compte/etat-compte.component';
+import { StyleClassModule } from 'primeng/styleclass';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
 @NgModule({
   imports: [
     BrowserModule,
@@ -42,6 +45,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-', caseSensitive: true }),
     TranslationModule,
     ComponentsModule,
+    StyleClassModule,
+    ButtonModule,
+    RippleModule,
   ],
   providers: [
     Title,
@@ -50,7 +56,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FindLanguageFromKeyPipe,
     httpInterceptorProviders,
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, AdminLayoutComponent],
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    AdminLayoutComponent,
+    EtatCompteComponent,
+  ],
   bootstrap: [MainComponent],
   exports: [ActiveMenuDirective],
 })
