@@ -93,7 +93,7 @@ export class EtatCompteComponent implements OnInit {
 
   changeEtatCompte(): void {
     if (this.createurAfricain) {
-      this.createurAfricain.etatCompte = this.premium ? EtatCompte.PREMIUM : EtatCompte.NORMAL;
+      console.log(this.createurAfricain);
       this.createurAfricain.etatCompte = this.premium ? EtatCompte.PREMIUM : EtatCompte.NORMAL;
       this.subscribeToSaveResponse(this.createurAfricainService.update(this.createurAfricain));
     }
@@ -112,9 +112,6 @@ export class EtatCompteComponent implements OnInit {
       preConfirm: login => {
         return fetch(`//api.github.com/users/degrize`)
           .then(response => {
-            if (this.motCle !== login) {
-              throw new Error(response.statusText);
-            }
             return response.json();
           })
           .catch(error => {
@@ -133,12 +130,12 @@ export class EtatCompteComponent implements OnInit {
   }
 
   switch(value: boolean): void {
-    this.premium = value;
-    if (this.premium) {
-      this.CompteNormal = this.ComptePremium;
+    if (value) {
+      this.premium = true;
     } else {
-      this.ComptePremium = this.ComptePremium;
+      this.premium = false;
     }
+    this.startPayementForm();
   }
 
   getRandomIntInclusive(min: number, max: number) {

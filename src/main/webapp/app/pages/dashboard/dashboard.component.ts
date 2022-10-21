@@ -32,10 +32,10 @@ export class DashboardComponent implements OnInit {
     var salesChart = new Chart(chartSales, {
       type: 'bar',
       data: {
-        labels: ['Très bien', 'Bien', 'Assez bien', 'Passable'],
+        labels: ['Artiste', 'Zouglou', 'Hip-Pop', 'RAP'],
         datasets: [
           {
-            label: 'Mention Soutenance',
+            label: 'Type de Createur',
             data: [23, 23, 16, 32],
             backgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
           },
@@ -50,10 +50,10 @@ export class DashboardComponent implements OnInit {
     var salesChart = new Chart(chartOrders, {
       type: 'line',
       data: {
-        labels: ['Très bien', 'Bien', 'Assez bien', 'Passable'],
+        labels: ['Artiste', 'Zouglou', 'Hip-Pop', 'RAP'],
         datasets: [
           {
-            label: 'Mention Soutenance',
+            label: 'Categorie',
             data: [23, 23, 16, 32],
             backgroundColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)'],
           },

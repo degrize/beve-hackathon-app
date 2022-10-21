@@ -92,6 +92,7 @@ public class SecurityConfiguration {
             .antMatchers("/api/transactions").permitAll()
             .antMatchers("/api/dons/**").permitAll()
             .antMatchers("/api/dons/search-list").permitAll()
+            .antMatchers("/api/createur-africains/**").permitAll()
             .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/health/**").permitAll()

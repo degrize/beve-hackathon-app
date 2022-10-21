@@ -2,7 +2,7 @@
   <div class="d-flex flex-column justify-content-center align-items-center">
     <div>
       <h2 class="ja d-inline-block text-yellow">Recevez les dons de vos fans</h2>
-      <h2 class="ja d-inline-block">, tout en faisant ce que vous aimez</h2>
+      <h2 class="ja d-inline-block">,tout en faisant ce que vous aimez</h2>
     </div>
 
     <div class="d-flex flex-wrap justify-content-center align-items-center">
@@ -22,9 +22,7 @@
         <slide>
           <img class="img-fluid shadow rounded" src="../../../content/images/Imagese1.jpg" alt="First slide" />
         </slide>
-        <slide>
-          <img class="img-fluid shadow rounded" src="../../../content/images/Imagese2.jpg" alt="First slide" />
-        </slide>
+
         <slide>
           <img class="img-fluid shadow rounded" src="../../../content/assets/img/beve/geo-chierchia.jpg" alt="Second slide" />
         </slide>
@@ -43,25 +41,30 @@
         <button type="button" class="btn btn-info mb-2" data-filter="all">Tout</button>
       </div>
 
-      <div
-        class="container d-flex justify-content-center align-items-center flex-wrap p-5 rounded shadow"
-        style="background: linear-gradient(104.52deg, #d0b739 -11.68%, #d7d050 113.61%)"
-      >
+      <div class="container d-flex justify-content-center align-items-center flex-wrap p-5 rounded shadow">
         <ng-container *ngFor="let createurAfricain of createurAfricains; let categorieClass">
-          <ng-container *ngFor="let categorieCreateur of createurAfricain?.categorieCreateurs">
-            <div [class]="'card mix rounded blue filter-' + categorieCreateur.id">
-              <a [routerLink]="'/createur/' + createurAfricain.label">
-                <img class="card-img-top" src="../../../content/assets/img/beve/andre-hunter.jpg" alt="Card image cap" />
-                <div class="card-body shadow-sm">
-                  <h5 class="card-title text-center">{{ createurAfricain.surnom }} / {{ categorieCreateur.categorie }}</h5>
-                  <p class="card-text">
-                    <small class="text-muted">
-                      {{ (createurAfricain.nomDeFamille + '').toUpperCase() }} {{ createurAfricain.prenom | shorten: 10 }}
-                    </small>
-                  </p>
-                </div>
-              </a>
-            </div>
+          <ng-container>
+            <ng-container *ngFor="let categorieCreateur of createurAfricain?.categorieCreateurs">
+              <div [class]="' glass card mix rounded blue filter-' + categorieCreateur.id">
+                <a [routerLink]="'/createur/' + createurAfricain.label">
+                  <img
+                    class="card-img-top"
+                    [src]="'data:' + createurAfricain?.photoContentType + ';base64,' + createurAfricain?.photo"
+                    alt="Card image cap"
+                    width="500"
+                    height="200"
+                  />
+                  <div class="card-body shadow-sm">
+                    <h5 class="card-title text-center">{{ createurAfricain.surnom }} / {{ categorieCreateur.categorie }}</h5>
+                    <p class="card-text">
+                      <small class="text-muted">
+                        {{ (createurAfricain.nomDeFamille + '').toUpperCase() }} {{ createurAfricain.prenom | shorten: 10 }}
+                      </small>
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </ng-container>
           </ng-container>
         </ng-container>
       </div>

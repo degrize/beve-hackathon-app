@@ -11,6 +11,7 @@ import { HttpResponse } from '@angular/common/http';
 import { ICreateurAfricain } from '../entities/createur-africain/createur-africain.model';
 import { CreateurAfricainService } from '../entities/createur-africain/service/createur-africain.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EtatCompte } from '../entities/enumerations/etat-compte.model';
 
 declare var mixitup: any;
 
@@ -27,6 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   createursSharedCollection: ICreateurAfricain[] = [];
   closeResult = '';
   var_class = '';
+  etatPremium = EtatCompte.PREMIUM;
+  etatNormale = EtatCompte.NORMAL;
 
   private readonly destroy$ = new Subject<void>();
 

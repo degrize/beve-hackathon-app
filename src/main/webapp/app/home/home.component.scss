@@ -212,6 +212,7 @@ body {
 }
 .boutt {
   margin-top: 50px;
+  background: linear-gradient(pink, #ffcb02);
 }
 
 .card-body {
@@ -222,7 +223,7 @@ body {
 }
 
 .ja {
-  font-size: 50px;
+  font-size: 48px;
 }
 
 .jb {
@@ -275,4 +276,8 @@ body {
   .card {
     min-width: 90%;
   }
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.4);
 }

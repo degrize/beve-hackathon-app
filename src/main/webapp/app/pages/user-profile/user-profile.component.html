@@ -50,7 +50,7 @@
               <b class="text-yellow">Tel</b> : {{ createurAfricain?.contact1 }} — <b class="text-yellow">Pays</b> :
               {{ createurAfricain?.pays }} — <b class="text-yellow">Ville</b> : {{ createurAfricain?.ville }}
             </p>
-            <a [routerLink]="'/createur-portfolio/' + createurAfricain?.id + '/view'">Voir ma page</a>
+            <a [routerLink]="['/createur/', createurAfricain?.label]">Voir ma page</a>
           </div>
         </div>
       </div>
