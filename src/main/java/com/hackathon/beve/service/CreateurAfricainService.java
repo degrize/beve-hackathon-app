@@ -71,4 +71,6 @@ public interface CreateurAfricainService {
     CreateurAfricain findUser(Long id);
 
     Optional<CreateurAfricainDTO> findOneByLabel(String label);
+
+    CreateurAfricainDTO updateEtatCompte(CreateurAfricainDTO createurAfricainDTO);
 }

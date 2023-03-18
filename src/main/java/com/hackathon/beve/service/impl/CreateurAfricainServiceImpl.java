@@ -136,4 +136,12 @@ public class CreateurAfricainServiceImpl implements CreateurAfricainService {
         log.debug("Request to get CreateurAfricain by Label : {}", label);
         return createurAfricainRepository.findCreateurAfricainByLabel(label).map(createurAfricainMapper::toDto);
     }
+
+    @Override
+    public CreateurAfricainDTO updateEtatCompte(CreateurAfricainDTO createurAfricainDTO) {
+        log.debug("Request to save CreateurAfricain : {}", createurAfricainDTO);
+        CreateurAfricain createurAfricain = createurAfricainMapper.toEntity(createurAfricainDTO);
+        createurAfricain = createurAfricainRepository.save(createurAfricain);
+        return createurAfricainMapper.toDto(createurAfricain);
+    }
 }

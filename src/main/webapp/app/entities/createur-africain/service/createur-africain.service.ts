@@ -48,6 +48,15 @@ export class CreateurAfricainService {
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
+  updateEtatCompte(createurAfricain: ICreateurAfricain): Observable<EntityResponseType> {
+    const copy = this.convertDateFromClient(createurAfricain);
+    return this.http
+      .put<RestCreateurAfricain>(`${this.resourceUrl}/etat-compte/${this.getCreateurAfricainIdentifier(createurAfricain)}`, copy, {
+        observe: 'response',
+      })
+      .pipe(map(res => this.convertResponseFromServer(res)));
+  }
+
   partialUpdate(createurAfricain: PartialUpdateCreateurAfricain): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(createurAfricain);
     return this.http

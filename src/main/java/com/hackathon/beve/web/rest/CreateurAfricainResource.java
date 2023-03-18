@@ -224,4 +224,18 @@ public class CreateurAfricainResource {
         Optional<CreateurAfricainDTO> createurAfricainDTO = createurAfricainService.findOneByLabel(label);
         return ResponseUtil.wrapOrNotFound(createurAfricainDTO);
     }
+
+    @PutMapping("/createur-africains/etat-compte/{id}")
+    public ResponseEntity<CreateurAfricainDTO> updateCreateurAfricainEtatCompte(
+        @PathVariable(value = "id", required = false) final Long id,
+        @Valid @RequestBody CreateurAfricainDTO createurAfricainDTO
+    ) throws URISyntaxException {
+        log.debug("REST request to update CreateurAfricain ETAT COMPTE : {}, {}", id, createurAfricainDTO);
+
+        CreateurAfricainDTO result = createurAfricainService.updateEtatCompte(createurAfricainDTO);
+        return ResponseEntity
+            .ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, createurAfricainDTO.getId().toString()))
+            .body(result);
+    }
 }

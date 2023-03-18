@@ -31,7 +31,7 @@ public interface CreateurAfricainRepository extends CreateurAfricainRepositoryWi
     }
 
     @Query(
-        "select createurafricain from CreateurAfricain createurafricain left join fetch createurafricain.jhiUser where createurafricain.jhiUser.id =:id"
+        "select createurafricain from CreateurAfricain createurafricain left join fetch createurafricain.jhiUser left join fetch createurafricain.categorieCreateurs left join fetch createurafricain.inspirations left join fetch createurafricain.souscriptions left join fetch createurafricain.reseauxSociauxes where createurafricain.jhiUser.id =:id"
     )
     CreateurAfricain findByJhiUserId(@Param("id") Long id);
 

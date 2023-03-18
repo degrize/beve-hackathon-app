@@ -95,7 +95,8 @@ export class EtatCompteComponent implements OnInit {
     if (this.createurAfricain) {
       console.log(this.createurAfricain);
       this.createurAfricain.etatCompte = this.premium ? EtatCompte.PREMIUM : EtatCompte.NORMAL;
-      this.subscribeToSaveResponse(this.createurAfricainService.update(this.createurAfricain));
+
+      this.subscribeToSaveResponse(this.createurAfricainService.updateEtatCompte(this.createurAfricain));
     }
   }
 
